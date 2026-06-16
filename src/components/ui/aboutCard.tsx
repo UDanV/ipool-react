@@ -1,24 +1,58 @@
-import RoundedButton from "./roundedButton"
+const AboutCard = ({
+  bg,
+  title,
+  link,
+  className,
+  large = false,
+  subtitle,
+}: {
+  bg: string
+  title: string
+  link: string
+  className?: string
+  large?: boolean
+  subtitle?: string
+}) => {
+  return (
+    <a
+      href={link}
+      className={`group relative block overflow-hidden ${className}`}
+    >
+      <div
+        className={
+          large
+            ? 'relative min-h-[22rem] sm:min-h-[26rem] md:min-h-[32rem] lg:min-h-[min(68vh,720px)]'
+            : 'relative min-h-64 sm:min-h-80 md:min-h-[22rem] lg:min-h-[28rem] xl:min-h-[32rem]'
+        }
+      >
+        <img
+          src={bg}
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+        />
 
-const AboutCard = ({ image, bg, title, className } : { image: string, bg: string, title: string, className?: string }) => {
-    return (
-        <div className={`flex flex-col ${className}`}>
-            <div 
-                className="relative flex items-center justify-center bg-no-repeat border border-black bg-white h-96 p-6"
-                style={{ backgroundImage: `url(${bg})` }}
-            >
-                <img src={image} alt="" className="max-h-32 object-contain" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10 transition-colors duration-500 group-hover:from-black/90 group-hover:via-black/40" />
 
-                <RoundedButton
-                    className="absolute bottom-6 right-6 w-30 h-12 flex items-center justify-center 
-                                text-white bg-[#687C96] rounded-full shadow-md hover:bg-[#50627a] transition"
-                    >
-                    →
-                </RoundedButton>
-            </div>
-            <p className="font-bold text-5xl">{title}</p>
+        <div className="relative z-10 flex h-full min-h-[inherit] flex-col justify-end p-5 sm:p-6 md:p-7 lg:p-8 xl:p-10">
+          <p className="mb-2 text-[10px] font-medium uppercase tracking-[0.25em] text-white/70 sm:mb-3 sm:text-xs">
+            iPool
+          </p>
+          <h3 className="max-w-[85%] text-[clamp(1.75rem,6vw,3.75rem)] font-bold uppercase leading-none text-white">
+            {title}
+          </h3>
+          {subtitle && (
+            <p className="mt-3 max-w-md text-sm text-white/75 sm:text-base lg:mt-4 lg:text-lg">
+              {subtitle}
+            </p>
+          )}
         </div>
-    )
+
+        <span className="absolute bottom-5 right-5 z-10 flex h-9 w-16 items-center justify-center rounded-full border border-white/30 bg-white/15 text-base text-white shadow-md backdrop-blur-sm transition-all duration-300 group-hover:translate-x-1 group-hover:border-white group-hover:bg-white group-hover:text-black sm:bottom-6 sm:right-6 sm:h-11 sm:w-20 sm:text-lg md:bottom-7 md:right-7 lg:bottom-8 lg:right-8">
+          →
+        </span>
+      </div>
+    </a>
+  )
 }
 
 export default AboutCard

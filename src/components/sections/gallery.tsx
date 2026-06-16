@@ -1,83 +1,45 @@
-import React, { useRef } from 'react';
-import SharpButton from '@/components/ui/sharpButton';
+import { useState } from 'react'
+import ImageSwiper from '@/components/ui/imageSwiper'
+import GalleryModal from '@/components/ui/galleryModal'
+import SharpButton from '@/components/ui/sharpButton'
 
 interface GalleryProps {
-  images: string[];
-  imageWidth?: number;
+  images: string[]
+  moreHref?: string
+  moreTitle?: string
 }
 
-const Gallery: React.FC<GalleryProps> = ({ images, imageWidth = 600 }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  let isDown = false;
-  let startX = 0;
-  let scrollLeft = 0;
+const Gallery = ({
+  images,
+  moreHref = '/spa-box',
+  moreTitle = 'Больше',
+}: GalleryProps) => {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [activeIndex, setActiveIndex] = useState(0)
 
-  const onMouseDown = (e: React.MouseEvent) => {
-    if (!containerRef.current) return;
-    isDown = true;
-    startX = e.pageX - containerRef.current.offsetLeft;
-    scrollLeft = containerRef.current.scrollLeft;
-  };
-
-  const onMouseLeave = () => {
-    isDown = false;
-  };
-
-  const onMouseUp = () => {
-    isDown = false;
-  };
-
-  const onMouseMove = (e: React.MouseEvent) => {
-    if (!isDown || !containerRef.current) return;
-    e.preventDefault();
-    const x = e.pageX - containerRef.current.offsetLeft;
-    const walk = (x - startX) * 1.5;
-    containerRef.current.scrollLeft = scrollLeft - walk;
-  };
+  const openModal = (index: number) => {
+    setActiveIndex(index)
+    setIsModalOpen(true)
+  }
 
   return (
-    <div className='max-w-[1800px] m-auto flex flex-col gap-12'>
-        <div
-        ref={containerRef}
-        onMouseDown={onMouseDown}
-        onMouseLeave={onMouseLeave}
-        onMouseUp={onMouseUp}
-        onMouseMove={onMouseMove}
-        className="
-          flex gap-4
-          overflow-x-scroll 
-          cursor-grab 
-          select-none 
-          scrollbar-hide
-          snap-x snap-mandatory
-          scroll-smooth
-        "
-        style={{
-          scrollbarWidth: 'none',
-          msOverflowStyle: 'none',
-        }}
-      >
-          {images.map((src, index) => (
-          <img
-            key={index}
-            src={src}
-            alt={`Изображение ${index + 1}`}
-            style={{ width: `${imageWidth}px`, height: 'auto' }}
-            className="
-              object-cover 
-              flex-shrink-0 
-              pointer-events-none 
-              snap-start
-            "
-          />
-        ))}
-      </div>
-      <SharpButton
-        title="Больше"
-        icon=''
+    <div className="m-auto flex max-w-[90dvw] flex-col gap-8 px-3 lg:gap-12 lg:px-0">
+      <ImageSwiper
+        images={images}
+        variant="section"
+        onImageClick={openModal}
       />
-    </div>
-  );
-};
 
-export default Gallery;
+      <GalleryModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        images={images}
+        initialIndex={activeIndex}
+      />
+
+      <SharpButton title={moreTitle} icon="" href={moreHref} />
+    </div>
+  )
+}
+
+export default Gallery

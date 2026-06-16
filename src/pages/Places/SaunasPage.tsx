@@ -9,7 +9,7 @@ import galleryImg4 from '@/assets/gallery_img4.png'
 import saunasIcon from '@/assets/saunas-icon.svg'
 import DesignSection from "./designSection"
 
-const SaunasPage = () => {
+const SaunasPageSpaBox = () => {
 
     const imagesList = [
         galleryImg1,
@@ -31,4 +31,4 @@ const SaunasPage = () => {
     )
 }
 
-export default SaunasPage
+export default SaunasPageSpaBox

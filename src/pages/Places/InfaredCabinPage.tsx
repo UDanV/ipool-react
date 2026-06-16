@@ -25,8 +25,8 @@ const InfraredCabinPage = () => {
             <div className="w-full mt-120 mb-96">
                 <img className="m-auto" src={roomImage} alt="" />
             </div>
-            <DesignSection></DesignSection>
-            <Gallery images={imagesList}></Gallery>
+            <DesignSection />
+            <Gallery images={imagesList} />
         </>
     )
 }

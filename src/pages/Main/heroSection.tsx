@@ -1,82 +1,71 @@
-import HeroBanner from '@/components/sections/heroBanner';
-import { motion } from 'framer-motion';
-import main from '@/assets/main.png';
+import { useEffect, useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import HeroBanner from '@/components/sections/heroBanner'
+import main from '@/assets/main.png'
+import poolPhoto from '@/assets/pool-img-temp.jpg'
+import saunaPhoto from '@/assets/sauna-img-temp.jpg'
+
+const DEFAULT_BACKGROUNDS = [main, poolPhoto, saunaPhoto]
+const SLIDE_INTERVAL_MS = 5000
 
 interface HeroSectionProps {
-  title: string;
-  className?: string;
-  withBackground?: boolean;
-  withSideImage?: boolean; 
-  sideImageSrc?: string;  
+  title: string
+  link?: string
+  className?: string
+  backgrounds?: string[]
 }
 
 const HeroSection = ({
   title,
-  className,
-  withBackground = true,
-  withSideImage = false,
-  sideImageSrc,
+  link,
+  className = '',
+  backgrounds = DEFAULT_BACKGROUNDS,
 }: HeroSectionProps) => {
+  const slides = backgrounds.length > 0 ? backgrounds : DEFAULT_BACKGROUNDS
+  const [activeIndex, setActiveIndex] = useState(0)
+
+  useEffect(() => {
+    if (slides.length <= 1) return
+
+    const timer = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % slides.length)
+    }, SLIDE_INTERVAL_MS)
+
+    return () => clearInterval(timer)
+  }, [slides.length])
+
   return (
     <>
-      {withBackground ? (
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="relative w-full bg-no-repeat bg-cover mt-8"
-          style={{
-            backgroundImage: `url(${main})`,
-            height: 'calc(100vh - 110px)',
-          }}
-        >
-          <div className="absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-black/80 to-transparent" />
-          <div className="absolute bottom-0 lg:w-120 p-0 mb-10 xl:pl-20 xl:pb-8 xl:m-0">
-            <motion.h1
-              initial={{ y: 150, visibility: 'hidden' }}
-              animate={{ y: 0, visibility: 'visible' }}
-              transition={{ duration: 0.5, ease: 'backOut', delay: 1 }}
-              className={`${className} text-white font-bold uppercase`}
-            >
-              {title}
-            </motion.h1>
-          </div>
-        </motion.div>
-      ) : (
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="mt-8 flex flex-col lg:flex-row items-center lg:items-end justify-between lg:border border-black gap-20 lg:gap-52"
-          style={{ minHeight: 'calc(100vh - 110px)' }}
-        >
-            <div className='p-0 mb-10 xl:pl-20 xl:pb-8 xl:m-0'>
-                <motion.h1
-                  initial={{ y: 150, visibility: 'hidden' }}
-                  animate={{ y: 0, visibility: 'visible' }}
-                  transition={{ duration: 0.5, ease: 'backOut', delay: 1 }}
-                  className={`${className} font-bold uppercase text-[50px] text-center lg:text-start lg:text-8xl lg:max-w-[500px] xl:leading-30`}
-                >
-                    {title}
-                </motion.h1>
-            </div>
+      <div className="relative mt-8 min-h-[520px] overflow-hidden sm:min-h-[620px] lg:min-h-[calc(100vh_-_110px)]">
+        <AnimatePresence mode="sync">
+          <motion.div
+            key={activeIndex}
+            initial={{ opacity: 0, scale: 1.08 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 1.02 }}
+            transition={{ duration: 1.4, ease: 'easeInOut' }}
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: `url(${slides[activeIndex]})` }}
+          />
+        </AnimatePresence>
 
-          {withSideImage && sideImageSrc && (
-            <motion.img
-                src={sideImageSrc}
-                alt="side"
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-                className="h-full max-h-[calc(100vh-110px)] w-full lg:max-w-[60%] object-contain self-stretch flex-1 xl:flex-auto"
-            />
-          )}
-        </motion.div>
-      )}
+        <div className="absolute inset-0 bg-black/35" />
 
-      <HeroBanner />
+        <div className="relative z-10 flex min-h-[inherit] flex-col items-center justify-center px-4 sm:px-8 md:px-20">
+          <motion.h1
+            initial={{ opacity: 0, scale: 0.88 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+            className={`max-w-full text-center text-[clamp(3rem,12vw,100px)] font-bold uppercase leading-[0.95] text-white xl:text-[120px] ${className}`}
+          >
+            {title}
+          </motion.h1>
+        </div>
+      </div>
+
+      <HeroBanner link={link} />
     </>
-  );
-};
+  )
+}
 
-export default HeroSection;
+export default HeroSection

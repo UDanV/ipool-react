@@ -9,7 +9,7 @@ import galleryImg4 from '@/assets/gallery_img4.png'
 import poolIcon from '@/assets/pool-icon.svg'
 import DesignSection from "./designSection"
 
-const PoolsPage = () => {
+const PoolsPageSpaBox = () => {
 
     const imagesList = [
         galleryImg1,
@@ -31,4 +31,4 @@ const PoolsPage = () => {
     )
 }
 
-export default PoolsPage
+export default PoolsPageSpaBox

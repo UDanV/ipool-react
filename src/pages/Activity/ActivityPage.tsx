@@ -6,55 +6,50 @@ import object from '@/assets/object.png'
 
 const ActivityPage = () => {
     return (
-        <div className="leading-none">
-            <HeroSection 
-                title="Как мы работаем" 
-                withBackground={false}
-                withSideImage
-                sideImageSrc={tempImg}
-            />
+        <div className="leading-tight lg:leading-none">
+            <HeroSection title="Как мы работаем" />
 
-            <div className="flex flex-col 2xl:flex-row items-center lg:items-start justify-between px-8 lg:px-16 mt-16 gap-12 lg:gap-24">
-                <img src={tempImg} alt="Строительство" />
-                <div className="text-[32px] space-y-6 lg:space-y-8 xl:max-w-3xl font-light">
-                    <h2 className="text-[48px] lg:text-[64px] font-medium">Процесс Строительства</h2>
+            <div className="flex flex-col 2xl:flex-row items-center lg:items-start justify-between px-3 lg:px-16 mt-16 gap-10 lg:gap-24">
+                <img src={tempImg} alt="Строительство" className="w-full max-w-xl object-contain 2xl:max-w-none" />
+                <div className="text-lg sm:text-2xl xl:text-[32px] space-y-5 lg:space-y-8 2xl:max-w-3xl font-light">
+                    <h2 className="text-4xl sm:text-[48px] lg:text-[64px] font-medium">Процесс Строительства</h2>
                     <p>Процесс строительства включает в себя несколько ключевых этапов, которые обеспечивают успешную реализацию проекта от начальной идеи до окончательной эксплуатации объекта.</p>
                     <p className="font-bold">Подготовительный этап</p>
-                    <p>Строительство начинается с подготовительного этапа, который включает в себя принятие решения о строительстве, выбор земельного участка и его покупку или аренду.</p>
+                    <p>Строительство начинается с подготовительного этапа, который включает в себя принятие решения о строительстве, выбор земельного участка и его покупку или аренду.</p>
                     <p>На этом этапе также осуществляется разработка градостроительного плана, который определяет, как будет размещен объект на территории. Важным шагом является проведение публичных слушаний, на которых обсуждаются планы застройки с местными жителями и заинтересованными сторонами.</p>
                     <p>После этого проводятся инженерные изыскания, включая геологические и экологические исследования, что позволяет оценить условия для строительства.</p>
                 </div>
             </div>
 
-            <h2 className="2xl:indent-252 text-[48px] lg:text-[64px] mt-12 px-8 lg:px-16 font-medium">
+            <h2 className="2xl:indent-252 text-4xl sm:text-[48px] lg:text-[64px] xl:mt-12 px-3 mt-6 lg:px-16 font-medium">
                 Следующий этап – это разработка проектной документации.
             </h2>
 
-            <div className="flex flex-col xl:flex-row items-center lg:items-start justify-between px-8 lg:px-16 mt-8 gap-12 lg:gap-24">
+            <div className="flex flex-col 2xl:flex-row items-center lg:items-start justify-between px-3 lg:px-16 mt-8 gap-10 lg:gap-24">
                 <img src={drawnings} alt="Проектная документация" className="w-full lg:w-auto max-w-lg" />
-                <div className="text-[32px] space-y-6 lg:space-y-8 xl:max-w-3xl font-light">
+                <div className="text-lg sm:text-2xl xl:text-[32px] space-y-5 lg:space-y-8 2xl:max-w-3xl font-light">
                     <p>На этом этапе создаются все необходимые чертежи и схемы, которые детализируют проект.</p>
                     <p>Важно также установить инженерные системы – водоснабжение, электрику и вентиляцию – на этом этапе.</p>
-                    <p>После получения всех необходимых разрешений начинается непосредственное строительство. Этот этап включает в себя земляные работы, такие как выемка грунта и подготовка фундамента.</p>
+                    <p>После получения всех необходимых разрешений начинается непосредственное строительство. Этот этап включает в себя земляные работы, такие как выемка грунта и подготовка фундамента.</p>
                 </div>
             </div>
-        
-            <img className="px-8 lg:px-16 rounded-xl my-10 w-full" src={pool} alt="Бассейн" />
 
-            <div className="flex flex-col xl:flex-row items-start justify-between px-8 lg:px-16 mt-8 gap-12 lg:gap-24">
-                <h2 className="text-[48px] lg:text-[64px] font-medium xl:max-w-md">
-                    Этап внутренней отделки и благоустройства территории.
+            <img className="px-3 lg:px-16 rounded-xl my-10 w-full" src={pool} alt="Бассейн" />
+
+            <div className="flex flex-col 2xl:flex-row items-start justify-between px-3 lg:px-16 mt-8 gap-10 lg:gap-24">
+                <h2 className="text-4xl sm:text-[48px] lg:text-[64px] font-medium 2xl:max-w-md">
+                    Этап внутренней отделки и благоустройства территории.
                 </h2>
-                <div className="text-[32px] leading-none space-y-6 lg:space-y-12 xl:max-w-3xl font-light">
-                <p>На этом этапе проводятся работы по отделке внутренних помещений, установке окон и дверей, а также прокладке коммуникаций. Благоустройство включает в себя создание ландшафта вокруг здания: озеленение, укладка дорожек и установка освещения.</p>
-                <p className="font-normal">Завершением строительного процесса является ввод объекта в эксплуатацию. Для этого необходимо получить заключение о соответствии выполненных работ проекту от государственных органов. После этого объект регистрируется в государственных учреждениях, что подтверждает его законность и готовность к эксплуатации.</p>
+                <div className="text-lg sm:text-2xl xl:text-[32px] leading-tight lg:leading-none space-y-5 lg:space-y-12 2xl:max-w-3xl font-light">
+                    <p>На этом этапе проводятся работы по отделке внутренних помещений, установке окон и дверей, а также прокладке коммуникаций. Благоустройство включает в себя создание ландшафта вокруг здания: озеленение, укладка дорожек и установка освещения.</p>
+                    <p className="font-normal">Завершением строительного процесса является ввод объекта в эксплуатацию. Для этого необходимо получить заключение о соответствии выполненных работ проекту от государственных органов. После этого объект регистрируется в государственных учреждениях, что подтверждает его законность и готовность к эксплуатации.</p>
                 </div>
             </div>
 
-            <div className="flex flex-col xl:flex-row items-start justify-between px-8 lg:px-16 mt-16 gap-12 lg:gap-24">
-                <img src={tempImg} alt="Проектирование" />
-                <div className="text-[32px] space-y-6 lg:space-y-8 xl:max-w-3xl font-light">
-                    <h2 className="text-[48px] lg:text-[64px] font-medium">Процесс Проектирования</h2>
+            <div className="flex flex-col 2xl:flex-row items-start justify-between px-3 lg:px-16 mt-16 gap-10 lg:gap-24">
+                <img src={tempImg} alt="Проектирование" className="w-full max-w-xl object-contain 2xl:max-w-none" />
+                <div className="text-lg sm:text-2xl xl:text-[32px] space-y-5 lg:space-y-8 2xl:max-w-3xl font-light">
+                    <h2 className="text-4xl sm:text-[48px] lg:text-[64px] font-medium">Процесс Проектирования</h2>
                     <p>Проектирование – это техническая часть работы, направленная на создание детализированной документации для реализации утвержденного дизайна.</p>
                     <p className="font-bold">Техническое задание (ТЗ)</p>
                     <p>Важно учесть не только эстетические предпочтения, но и функциональные задачи, которые должны быть решены в рамках будущего пространства.</p>
@@ -65,16 +60,16 @@ const ActivityPage = () => {
                 </div>
             </div>
 
-            <img className="px-8 lg:px-16 rounded-xl my-10 w-full" src={pool} alt="Бассейн" />
+            <img className="px-3 lg:px-16 rounded-xl my-10 w-full" src={pool} alt="Бассейн" />
 
-            <div className="flex flex-col xl:flex-row items-start justify-between px-8 lg:px-16 mt-16 gap-12 lg:gap-24">
+            <div className="flex flex-col xl:flex-row items-start justify-between px-3 lg:px-16 mt-16 gap-10 lg:gap-24">
                 <div className="flex flex-col space-y-8">
-                    <h2 className="text-[48px] lg:text-[64px] font-medium xl:max-w-3xl">
+                    <h2 className="text-4xl sm:text-[48px] lg:text-[64px] font-medium 2xl:max-w-3xl">
                         Следующий шаг – это расчет необходимых материалов.
                     </h2>
-                    <img src={object} alt="Материалы" />
+                    <img src={object} alt="Материалы" className="w-full max-w-xl object-contain" />
                 </div>
-                <div className="text-[32px] leading-none space-y-6 lg:space-y-12 xl:max-w-3xl font-light">
+                <div className="text-lg sm:text-2xl xl:text-[32px] leading-tight lg:leading-none space-y-5 lg:space-y-12 2xl:max-w-3xl font-light">
                     <p>На основе разработанных чертежей составляется спецификация, в которой указываются все используемые материалы и их объемы. Это позволяет не только оценить стоимость проекта, но и обеспечить правильность закупок на этапе реализации.</p>
                     <p><span className="font-normal">Смета </span>включает в себя все затраты на материалы, работу специалистов и дополнительные расходы, что помогает избежать непредвиденных ситуаций в процессе строительства.</p>
                     <p className="font-normal">Важной частью проектирования являются инженерные расчеты. Специалисты оценивают нагрузки на конструкции, проверяют соответствие проекта строительным нормам и правилам (СНиП).</p>
@@ -82,9 +77,9 @@ const ActivityPage = () => {
                 </div>
             </div>
 
-            <div className="flex flex-col xl:flex-row xl:justify-end px-8 lg:px-16 mt-16">
-                <div className="text-[32px] leading-none space-y-6 lg:space-y-12 xl:max-w-3xl font-light">
-                    <h2 className="text-[48px] lg:text-[64px] font-medium">Что же в итоге?</h2>
+            <div className="flex flex-col xl:flex-row xl:justify-end px-3 lg:px-16 mt-16">
+                <div className="text-lg sm:text-2xl xl:text-[32px] leading-tight lg:leading-none space-y-5 lg:space-y-12 2xl:max-w-3xl font-light">
+                    <h2 className="text-4xl sm:text-[48px] lg:text-[64px] font-medium">Что же в итоге?</h2>
                     <p>Когда все чертежи и расчеты готовы, происходит подготовка итогового проектного пакета.</p>
                     <p>В него входят все необходимые документы: чертежи, спецификации, сметы и расчеты. Этот пакет передается строителям для реализации проекта. Важно отметить, что успешное проектирование требует тесного взаимодействия между дизайнерами и инженерами на всех этапах работы.</p>
                     <p>Это сотрудничество позволяет создать гармоничное пространство, которое будет не только красивым, но и функциональным.</p>
@@ -92,6 +87,6 @@ const ActivityPage = () => {
             </div>
         </div>
     )
-} 
+}
 
 export default ActivityPage

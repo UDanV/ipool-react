@@ -2,7 +2,9 @@ import buddaImg from '@/assets/budda-circle.png'
 import buddaImg1 from '@/assets/budda-circle1.png'
 import arrowBtn from '@/assets/arrow-button.png'
 import SharpButton from '@/components/ui/sharpButton'
+import ContactModal from '@/components/ui/contactModal'
 import { motion, type Variants } from 'framer-motion'
+import { useState } from 'react'
 
 const textVariants: Variants = {
   hidden: { opacity: 0, x: -50 },
@@ -14,6 +16,8 @@ const textVariants: Variants = {
 }
 
 const DesignSection = () => {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false)
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
@@ -21,9 +25,9 @@ const DesignSection = () => {
       viewport={{ once: true }}
       transition={{ duration: 1 }}
     >
-      <div className='max-w-[1800px] m-auto flex flex-col gap-12 my-96 px-4 sm:px-8'>
+      <div className='max-w-[90dvw] m-auto flex flex-col gap-10 my-28 lg:gap-12 lg:my-48 2xl:my-96'>
         <div className='flex flex-col lg:flex-row justify-between gap-12 lg:gap-0'>
-          <h2 className='text-5xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-medium uppercase leading-tight text-center lg:text-left'>
+          <h2 className='text-[clamp(2.5rem,11vw,4.5rem)] lg:text-7xl xl:text-8xl 2xl:text-9xl font-medium uppercase leading-tight text-center lg:text-left'>
             <motion.span
               className='ml-0 xl:ml-28 block'
               variants={textVariants}
@@ -35,7 +39,7 @@ const DesignSection = () => {
               Разработаем
             </motion.span>
             <motion.span
-              className='ml-0 xl:ml-96 block'
+              className='ml-0 xl:ml-60 2xl:ml-96 block'
               variants={textVariants}
               initial="hidden"
               whileInView="visible"
@@ -45,7 +49,7 @@ const DesignSection = () => {
               современный
             </motion.span>
             <motion.span
-              className='inline-flex items-center gap-4 ml-0 xl:ml-150'
+              className='inline-flex items-center gap-3 ml-0 xl:ml-96 2xl:ml-150'
               variants={textVariants}
               initial="hidden"
               whileInView="visible"
@@ -72,7 +76,7 @@ const DesignSection = () => {
         </div>
 
         <div className='text-center max-w-6xl m-auto px-2'>
-          <p className='text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] uppercase font-medium leading-none'>
+          <p className='text-base sm:text-[22px] md:text-[26px] lg:text-[32px] uppercase font-medium leading-tight lg:leading-none'>
             Мы предлагаем индивидуальный подход и полный комплекс услуг.
             Компания iPool реализует проекты под ключ: от выбора инновационных
             материалов до профессионального монтажа и настройки. Мы используем
@@ -82,7 +86,16 @@ const DesignSection = () => {
             мебель и интерактивные элементы для максимального комфорта.
           </p>
         </div>
-        <SharpButton title='Свяжитесь с нами' />
+
+        <SharpButton
+          title='Свяжитесь с нами'
+          onPress={() => setIsContactModalOpen(true)}
+        />
+
+        <ContactModal
+          isOpen={isContactModalOpen}
+          onClose={() => setIsContactModalOpen(false)}
+        />
       </div>
     </motion.div>
   )
