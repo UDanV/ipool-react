@@ -224,16 +224,18 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: min(70dvh, 960px);
 }
 
 .ipool-swiper-modal .swiper-slide img {
   width: 100%;
-  max-height: min(70dvh, 960px);
 }
 
 .gallery-modal-body .ipool-swiper-modal {
   padding-bottom: 0;
+}
+
+.gallery-modal-body {
+  padding: 0;
 }
 
 .mobile-nav-disclosure .disclosure__indicator {

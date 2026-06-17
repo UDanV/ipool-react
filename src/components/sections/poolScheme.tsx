@@ -1,19 +1,15 @@
 import { useEffect, useState } from "react";
-import maximize from "@/assets/maximize.svg";
+import Gallery from "@/components/sections/gallery";
 import { POOL_DATA, type PoolType } from "@/types/CompositePools";
+import NumberFlow from "@number-flow/react";
+import { ScrollShadow } from "@heroui/react";
 
 export default function PoolSchemeBlock() {
   const [activeType, setActiveType] = useState<PoolType>("HIIT");
-  const [activeSlide, setActiveSlide] = useState(0);
   const [activeVariantId, setActiveVariantId] = useState<string | null>(null);
-
   useEffect(() => {
     const firstVariant = POOL_DATA[activeType].variants[0];
     setActiveVariantId(firstVariant?.id ?? null);
-  }, [activeType]);
-
-  useEffect(() => {
-    setActiveSlide(0);
   }, [activeType]);
 
   const activePool = POOL_DATA[activeType];
@@ -21,48 +17,62 @@ export default function PoolSchemeBlock() {
     activePool.variants.find((v) => v.id === activeVariantId) ??
     activePool.variants[0];
   const poolTypes = Object.keys(POOL_DATA) as PoolType[];
+  const depthFormat = {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
+  };
+  const depthClass = "text-xl font-bold italic lg:text-1xl";
+  const depth = activeVariant.depth;
+  const isDepthRange = Array.isArray(depth);
+  const showCols = activeVariant.cols != null && activeVariant.cols > 0;
+
+  const typeBtnClass = (active: boolean) =>
+    `rounded-lg py-3 px-3 w-full font-semibold text-sm transition-all duration-200 sm:text-base lg:py-3.5 lg:text-lg ${
+      active
+        ? "bg-black text-white shadow-sm"
+        : "text-[#2E2E2E] hover:bg-white/70"
+    }`;
+
+  const variantBtnClass = (active: boolean) =>
+    `shrink-0 rounded-full border px-4 py-2.5 font-semibold text-sm transition-all duration-200 sm:px-5 sm:py-3 sm:text-base lg:text-lg ${
+      active
+        ? "border-black bg-black text-white shadow-sm"
+        : "border-black/15 bg-white text-[#2E2E2E] hover:border-black/40 hover:bg-[#EDEDED]"
+    }`;
 
   return (
-    <div className="w-full max-w-[90dvw] m-auto px-3 flex flex-col max-h-full items-stretch mt-16 sm:px-6 lg:px-15 lg:mt-20">
-      <div
-        className="rounded-xl text-white h-full relative flex flex-col justify-end bg-cover bg-center transition-all duration-500"
-        style={{
-          backgroundImage: `url(${activeVariant.image?.[activeSlide] ?? ""})`,
-        }}
-      >
-        <div className="flex justify-end min-h-[360px] items-end gap-3 mb-3.5 mx-3.5 sm:min-h-[460px] lg:min-h-[620px]">
-          <button className="bg-white text-black py-4 max-w-[60px] flex w-full justify-center rounded-2xl sm:py-7 sm:max-w-[85px] sm:rounded-3xl">
-            <img src={maximize} alt="maximaze" className="w-5 sm:w-auto" />
-          </button>
-        </div>
-      </div>
-
-      <div className="mt-5.5">
-        <div className="flex flex-col items-start justify-between gap-8 xl:flex-row">
-          <div className="max-w-3xl">
-            <p className="text-black/70 leading-relaxed text-base sm:text-xl lg:text-2xl lg:leading-7.5">
+    <div className="w-full max-w-[90dvw] m-auto flex flex-col mt-16 lg:mt-20">
+      <div className="mt-10 lg:mt-14">
+        {" "}
+        <div className="flex flex-col gap-10 xl:flex-row xl:items-start xl:justify-between xl:gap-16 mb-10">
+          <div className="max-w-3xl flex flex-col gap-6 lg:gap-8 xl:pr-6">
+            <div>
+              <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.3em] text-[#687C96] sm:text-xs">
+                Модельный ряд
+              </p>
+              <h2 className="text-4xl font-black uppercase leading-[0.95] tracking-tight text-[#2E2E2E] sm:text-5xl lg:text-6xl">
+                {activePool.title}
+              </h2>
+            </div>
+            <p className="text-lg font-medium italic leading-snug text-[#4B4B4B] sm:text-xl lg:text-2xl">
+              {activePool.subtitle}
+            </p>
+            <p className="max-w-2xl border-l-2 border-[#687C96]/40 pl-5 text-base leading-relaxed text-[#4B4B4B]/85 sm:text-lg lg:text-xl">
               {activePool.description}
             </p>
           </div>
 
-          <div className="flex flex-col gap-6 max-w-[1000px] w-full lg:gap-8.5">
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4.5">
-              <span className="text-lg font-normal text-nowrap sm:text-2xl">
-                Тип бассейна:
-              </span>
-
-              <div className="grid grid-cols-2 gap-2 w-full sm:flex sm:justify-end">
+          <div className="flex w-full flex-col gap-5 xl:max-w-[660px] xl:shrink-0">
+            <div className="rounded-2xl border border-black/10 bg-white p-5 shadow-sm lg:p-6">
+              <p className="mb-4 text-[11px] font-medium uppercase tracking-[0.25em] text-[#4B4B4B] sm:text-xs">
+                Тип бассейна
+              </p>
+              <div className="grid grid-cols-2 gap-1.5 rounded-xl bg-[#EDEDED] p-1.5 sm:grid-cols-4">
                 {poolTypes.map((t) => (
                   <button
                     key={t}
                     onClick={() => setActiveType(t)}
-                    className={`
-                      py-3 rounded-xl w-full border transition font-semibold text-base sm:max-w-[156px] sm:text-xl lg:py-3.5 lg:text-2xl
-                      ${activeType === t
-                        ? "bg-black text-white border-black"
-                        : "bg-transparent text-black border-black"
-                      }
-                    `}
+                    className={typeBtnClass(activeType === t)}
                   >
                     {t}
                   </button>
@@ -70,56 +80,130 @@ export default function PoolSchemeBlock() {
               </div>
             </div>
 
-            <div className="flex gap-2 justify-center">
-              {activePool.variants.map((variant) => (
-                <button
-                  key={variant.id}
-                  onClick={() => setActiveVariantId(variant.id)}
-                  className={`
-        py-3 rounded-xl w-full border transition font-semibold text-base sm:text-xl lg:py-3.5 lg:text-2xl
-        ${activeVariantId === variant.id ? "bg-black text-white border-black" : "bg-transparent text-black border-black"}
-      `}
-                >
-                  {variant.label}
-                </button>
-              ))}
+            <div className="rounded-2xl border border-black/10 bg-white p-5 shadow-sm lg:p-6">
+              <p className="mb-4 text-[11px] font-medium uppercase tracking-[0.25em] text-[#4B4B4B] sm:text-xs">
+                Вариант исполнения
+              </p>
+              <ScrollShadow
+                className="flex gap-2"
+                orientation="horizontal"
+                hideScrollBar
+              >
+                {activePool.variants.map((variant) => (
+                  <button
+                    key={variant.id}
+                    onClick={() => setActiveVariantId(variant.id)}
+                    className={variantBtnClass(activeVariantId === variant.id)}
+                  >
+                    {variant.label}
+                  </button>
+                ))}
+              </ScrollShadow>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 lg:gap-4">
-              <div className="bg-[#EDEDED] rounded-xl p-4 text-center flex flex-col items-start lg:p-5">
-                <p className="text-[16px]">ОБЪЕМ БАССЕЙНА</p>
-                <p className="text-xl font-bold italic lg:text-2xl">
-                  ({activeVariant.volume}) М³
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:gap-4">
+              <div className="flex flex-col items-start rounded-xl bg-[#EDEDED] p-4 transition-colors duration-200 hover:bg-[#E4E4E4] lg:p-5">
+                <p className="mb-2 text-[11px] font-medium uppercase tracking-[0.15em] text-[#4B4B4B]/70 sm:text-xs">
+                  Объём
                 </p>
+                <NumberFlow
+                  value={activeVariant.volume}
+                  className="text-xl font-bold italic text-[#2E2E2E] lg:text-1xl"
+                  suffix="m³"
+                />
               </div>
-              <div className="bg-[#EDEDED] rounded-xl p-4 text-center flex flex-col items-start lg:p-5">
-                <p className="text-[16px]">ШИРИНА</p>
-                <p className="text-xl font-bold italic lg:text-2xl">
-                  ({activeVariant.width}) М
+              <div className="flex flex-col items-start rounded-xl bg-[#EDEDED] p-4 transition-colors duration-200 hover:bg-[#E4E4E4] lg:p-5">
+                <p className="mb-2 text-[11px] font-medium uppercase tracking-[0.15em] text-[#4B4B4B]/70 sm:text-xs">
+                  Ширина
                 </p>
+                <NumberFlow
+                  value={activeVariant.width}
+                  className="text-xl font-bold italic text-[#2E2E2E] lg:text-1xl"
+                  suffix="m"
+                />
               </div>
-              <div className="bg-[#EDEDED] rounded-xl p-4 text-center flex flex-col items-start lg:p-5">
-                <p className="text-[16px]">ДЛИНА</p>
-                <p className="text-xl font-bold italic lg:text-2xl">
-                  ({activeVariant.length}) М
+              <div className="flex flex-col items-start rounded-xl bg-[#EDEDED] p-4 transition-colors duration-200 hover:bg-[#E4E4E4] lg:p-5">
+                <p className="mb-2 text-[11px] font-medium uppercase tracking-[0.15em] text-[#4B4B4B]/70 sm:text-xs">
+                  Длина
                 </p>
+                <NumberFlow
+                  value={activeVariant.length}
+                  className="text-xl font-bold italic text-[#2E2E2E] lg:text-1xl"
+                  suffix="m"
+                />
               </div>
-              <div className="bg-[#EDEDED] rounded-xl p-4 text-center flex flex-col items-start lg:p-5">
-                <p className="text-[16px]">ГЛУБИНА</p>
-                <p className="text-xl font-bold italic lg:text-2xl">
-                  ({activeVariant.depth}) М
+              <div className="flex flex-col items-start rounded-xl bg-[#EDEDED] p-4 transition-colors duration-200 hover:bg-[#E4E4E4] lg:p-5">
+                <p className="mb-2 text-[11px] font-medium uppercase tracking-[0.15em] text-[#4B4B4B]/70 sm:text-xs">
+                  Глубина
                 </p>
+                <div
+                  className={`flex flex-wrap items-baseline text-[#2E2E2E] ${depthClass}`}
+                >
+                  {isDepthRange ? (
+                    <>
+                      <NumberFlow
+                        value={depth[0]}
+                        className={depthClass}
+                        locales="ru-RU"
+                        format={depthFormat}
+                      />
+                      <span className="mx-0.5">-</span>
+                      <NumberFlow
+                        value={depth[1]}
+                        className={depthClass}
+                        locales="ru-RU"
+                        format={depthFormat}
+                      />
+                      {showCols && (
+                        <>
+                          <NumberFlow
+                            value={activeVariant.cols!}
+                            className={depthClass}
+                            prefix="("
+                            suffix=")"
+                          />
+                        </>
+                      )}
+                    </>
+                  ) : (
+                    <NumberFlow
+                      value={depth}
+                      className={depthClass}
+                      locales="ru-RU"
+                      format={depthFormat}
+                      suffix="m"
+                    />
+                  )}
+                </div>
               </div>
             </div>
           </div>
         </div>
+        
+        {activeVariant.image && activeVariant.image.length > 0 && (
+          <Gallery
+            key={activeVariant.id}
+            images={activeVariant.image}
+            showMore={false}
+            className="m-0! w-full"
+          />
+        )}
 
         {activePool.schema && (
-          <img
-            src={activePool.schema}
-            alt={`${activeType} schema`}
-            className="m-auto mt-10 max-w-full filter invert"
-          />
+          <>
+            {activePool.schema && (
+              <div className="mt-10">
+                <p className="text-xl italic lg:text-2xl text-[#2E2E2E]">
+                  Варианты исполнения:
+                </p>
+              </div>
+            )}
+            <img
+              src={activePool.schema}
+              alt={`${activeType} schema`}
+              className="m-auto mt-10 max-w-full filter invert"
+            />
+          </>
         )}
       </div>
     </div>

@@ -10,7 +10,7 @@ const PoolsPage = () => {
       <HeroSectionSpa title="Бассейны" icon={poolIcon} centeredTitle />
 
       <section className="mt-10 w-full sm:mt-14 lg:mt-16">
-        <div className="grid grid-cols-1 gap-4 px-3 sm:gap-5 sm:px-6 lg:grid-cols-2 lg:gap-6 lg:px-8 xl:px-12">
+        <div className="grid grid-cols-1 xl:grid-cols-2">
           <AboutCard
             large
             bg={poolPhoto}

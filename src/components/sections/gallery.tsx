@@ -7,12 +7,16 @@ interface GalleryProps {
   images: string[]
   moreHref?: string
   moreTitle?: string
+  showMore?: boolean
+  className?: string
 }
 
 const Gallery = ({
   images,
   moreHref = '/spa-box',
   moreTitle = 'Больше',
+  showMore = true,
+  className = '',
 }: GalleryProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [activeIndex, setActiveIndex] = useState(0)
@@ -23,7 +27,7 @@ const Gallery = ({
   }
 
   return (
-    <div className="m-auto flex max-w-[90dvw] flex-col gap-8 px-3 lg:gap-12 lg:px-0">
+    <div className={`m-auto flex max-w-[90dvw] flex-col gap-8 px-3 lg:gap-12 lg:px-0 ${className}`}>
       <ImageSwiper
         images={images}
         variant="section"
@@ -37,7 +41,7 @@ const Gallery = ({
         initialIndex={activeIndex}
       />
 
-      <SharpButton title={moreTitle} icon="" href={moreHref} />
+      {showMore && <SharpButton title={moreTitle} icon="" href={moreHref} />}
     </div>
   )
 }

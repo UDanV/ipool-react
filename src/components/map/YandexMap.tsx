@@ -1,9 +1,9 @@
-import { YMaps, Map, Placemark } from 'react-yandex-maps';
-import logo from '@/assets/logo-ico.png'
+import { YMaps, Map, Placemark } from "react-yandex-maps";
+import logo from "@/assets/logo-ico.png";
 
 const YandexMap = () => {
   return (
-    <div className='w-full h-[50vh] max-w-[90dvw]'>
+    <div className="w-full h-[50vh] max-w-[90dvw] m-auto">
       <YMaps query={{ apikey: import.meta.env.VITE_API_YA_KEY }}>
         <Map
           defaultState={{ center: [47.258663, 39.798403], zoom: 17 }}
@@ -12,16 +12,17 @@ const YandexMap = () => {
         >
           <Placemark
             geometry={[47.258663, 39.798403]}
-            modules={['geoObject.addon.hint', 'geoObject.addon.balloon']}
+            modules={["geoObject.addon.hint", "geoObject.addon.balloon"]}
             properties={{
-              iconCaption: 'iPool',               
-              hintContent: 'г. Ростов-на-Дону, ул. Зеленая 8а',  
-              balloonContent: '<b>iPool</b><br/>Вр--емя работы:<br/>09:00 - 18:00', 
+              iconCaption: "iPool",
+              hintContent: "г. Ростов-на-Дону, ул. Зеленая 8а",
+              balloonContent:
+                "<b>iPool</b><br/>Вр--емя работы:<br/>09:00 - 18:00",
             }}
             options={{
-              iconLayout: 'default#image',
-              iconImageHref: logo, 
-              iconImageSize: [40, 40],                        
+              iconLayout: "default#image",
+              iconImageHref: logo,
+              iconImageSize: [40, 40],
               iconImageOffset: [-20, -20],
             }}
           />
