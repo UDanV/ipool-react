@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import close from "@/assets/close.png";
 import { Link } from "react-router-dom";
 import { Disclosure } from "@heroui/react";
 import { mobileNavLinks } from "@/data/headerNav";
+import { X } from "lucide-react";
 
 interface MobileMenuProps {
   onClose: () => void;
@@ -31,11 +31,9 @@ function MobileMenu({ onClose, isOpen }: MobileMenuProps) {
         className={`sticky z-10 flex w-full items-center justify-end bg-white pr-5 pb-3 transition-transform duration-300 ease-in-out lg:hidden ${isOpen ? "translate-y-8 translate-x-[-5px]" : "-translate-y-8 translate-x-0"
           }`}
       >
-        <img
+        <X
           onClick={onClose}
-          src={close}
           className="h-6 w-6 cursor-pointer"
-          alt="close"
         />
       </div>
 

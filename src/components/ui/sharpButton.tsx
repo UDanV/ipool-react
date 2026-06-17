@@ -1,10 +1,9 @@
+import { ArrowUpRightIcon } from 'lucide-react';
 import React from 'react';
-import arrowUpRight from '@/assets/arrow-up-right.svg';
 
 interface SharpButtonProps {
   title: string;
   className?: string;
-  icon?: string;
   href?: string;
   onPress?: () => void;
 }
@@ -12,14 +11,13 @@ interface SharpButtonProps {
 const SharpButton: React.FC<SharpButtonProps> = ({
   title,
   className = '',
-  icon = arrowUpRight,
   href,
   onPress,
 }) => {
   const content = (
     <>
       {title}
-      <img src={icon} alt="" />
+      <ArrowUpRightIcon className="h-4 w-4" />
     </>
   );
 

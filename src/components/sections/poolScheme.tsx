@@ -1,16 +1,26 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { motion } from "framer-motion";
 import Gallery from "@/components/sections/gallery";
 import { POOL_DATA, type PoolType } from "@/types/CompositePools";
 import NumberFlow from "@number-flow/react";
 import { ScrollShadow } from "@heroui/react";
 
+const contentTransition = {
+  initial: { opacity: 0.72 },
+  animate: { opacity: 1 },
+  transition: { duration: 0.22, ease: "easeOut" as const },
+};
+
 export default function PoolSchemeBlock() {
   const [activeType, setActiveType] = useState<PoolType>("HIIT");
-  const [activeVariantId, setActiveVariantId] = useState<string | null>(null);
-  useEffect(() => {
-    const firstVariant = POOL_DATA[activeType].variants[0];
-    setActiveVariantId(firstVariant?.id ?? null);
-  }, [activeType]);
+  const [activeVariantId, setActiveVariantId] = useState(
+    () => POOL_DATA.HIIT.variants[0]?.id ?? null,
+  );
+
+  const handleTypeChange = (type: PoolType) => {
+    setActiveType(type);
+    setActiveVariantId(POOL_DATA[type].variants[0]?.id ?? null);
+  };
 
   const activePool = POOL_DATA[activeType];
   const activeVariant =
@@ -27,25 +37,26 @@ export default function PoolSchemeBlock() {
   const showCols = activeVariant.cols != null && activeVariant.cols > 0;
 
   const typeBtnClass = (active: boolean) =>
-    `rounded-lg py-3 px-3 w-full font-semibold text-sm transition-all duration-200 sm:text-base lg:py-3.5 lg:text-lg ${
-      active
-        ? "bg-black text-white shadow-sm"
-        : "text-[#2E2E2E] hover:bg-white/70"
+    `rounded-lg py-3 px-3 w-full font-semibold text-sm transition-all duration-200 sm:text-base lg:py-3.5 lg:text-lg ${active
+      ? "bg-black text-white shadow-sm"
+      : "text-[#2E2E2E] hover:bg-white/70"
     }`;
 
   const variantBtnClass = (active: boolean) =>
-    `shrink-0 rounded-full border px-4 py-2.5 font-semibold text-sm transition-all duration-200 sm:px-5 sm:py-3 sm:text-base lg:text-lg ${
-      active
-        ? "border-black bg-black text-white shadow-sm"
-        : "border-black/15 bg-white text-[#2E2E2E] hover:border-black/40 hover:bg-[#EDEDED]"
+    `shrink-0 rounded-full border px-4 py-2.5 font-semibold text-sm transition-all duration-200 sm:px-5 sm:py-3 sm:text-base lg:text-lg ${active
+      ? "border-black bg-black text-white shadow-sm"
+      : "border-black/15 bg-white text-[#2E2E2E] hover:border-black/40 hover:bg-[#EDEDED]"
     }`;
 
   return (
     <div className="w-full max-w-[90dvw] m-auto flex flex-col mt-16 lg:mt-20">
       <div className="mt-10 lg:mt-14">
-        {" "}
-        <div className="flex flex-col gap-10 xl:flex-row xl:items-start xl:justify-between xl:gap-16 mb-10">
-          <div className="max-w-3xl flex flex-col gap-6 lg:gap-8 xl:pr-6">
+        <div className="mb-10 flex flex-col gap-10 xl:flex-row xl:items-start xl:justify-between xl:gap-16">
+          <motion.div
+            key={`pool-copy-${activeType}`}
+            {...contentTransition}
+            className="max-w-3xl flex flex-col gap-6 lg:gap-8 xl:pr-6"
+          >
             <div>
               <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.3em] text-[#687C96] sm:text-xs">
                 Модельный ряд
@@ -60,7 +71,7 @@ export default function PoolSchemeBlock() {
             <p className="max-w-2xl border-l-2 border-[#687C96]/40 pl-5 text-base leading-relaxed text-[#4B4B4B]/85 sm:text-lg lg:text-xl">
               {activePool.description}
             </p>
-          </div>
+          </motion.div>
 
           <div className="flex w-full flex-col gap-5 xl:max-w-[660px] xl:shrink-0">
             <div className="rounded-2xl border border-black/10 bg-white p-5 shadow-sm lg:p-6">
@@ -71,7 +82,7 @@ export default function PoolSchemeBlock() {
                 {poolTypes.map((t) => (
                   <button
                     key={t}
-                    onClick={() => setActiveType(t)}
+                    onClick={() => handleTypeChange(t)}
                     className={typeBtnClass(activeType === t)}
                   >
                     {t}
@@ -85,7 +96,7 @@ export default function PoolSchemeBlock() {
                 Вариант исполнения
               </p>
               <ScrollShadow
-                className="flex gap-2"
+                className="flex min-h-11 gap-2 sm:min-h-12"
                 orientation="horizontal"
                 hideScrollBar
               >
@@ -179,10 +190,10 @@ export default function PoolSchemeBlock() {
             </div>
           </div>
         </div>
-        
+
         {activeVariant.image && activeVariant.image.length > 0 && (
           <Gallery
-            key={activeVariant.id}
+            key={`gallery-${activeType}`}
             images={activeVariant.image}
             showMore={false}
             className="m-0! w-full"
@@ -190,20 +201,21 @@ export default function PoolSchemeBlock() {
         )}
 
         {activePool.schema && (
-          <>
-            {activePool.schema && (
-              <div className="mt-10">
-                <p className="text-xl italic lg:text-2xl text-[#2E2E2E]">
-                  Варианты исполнения:
-                </p>
-              </div>
-            )}
+          <motion.div
+            key={`schema-${activeType}`}
+            {...contentTransition}
+          >
+            <div className="mt-10">
+              <p className="text-xl italic text-[#2E2E2E] lg:text-2xl">
+                Варианты исполнения:
+              </p>
+            </div>
             <img
               src={activePool.schema}
               alt={`${activeType} schema`}
               className="m-auto mt-10 max-w-full filter invert"
             />
-          </>
+          </motion.div>
         )}
       </div>
     </div>

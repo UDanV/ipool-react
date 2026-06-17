@@ -1,4 +1,4 @@
-import btnLink from '@/assets/button-link.png'
+import { ArrowUpRightIcon } from 'lucide-react';
 import type { ReactNode } from 'react';
 
 interface ContactsCardProps {
@@ -19,7 +19,7 @@ const ContactsCard: React.FC<ContactsCardProps> = ({ title, subtitle, addition, 
             </div>
             <div className="self-end">
                 <a href={link}>
-                    <img className='w-12 sm:w-15' src={btnLink} alt="" />
+                    <ArrowUpRightIcon className='w-12 sm:w-15' />
                 </a>
             </div>
         </div>

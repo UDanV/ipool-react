@@ -1,5 +1,5 @@
 import HeroSectionSpa from "@/pages/Places/heroSection"
-import saunasIcon from '@/assets/saunas-icon.svg'
+import saunasIcon from '@/assets/spaBoxIcons/saunas-icon.svg'
 import ProectsSection from "../Main/proectsSection"
 
 const SaunasPage = () => {

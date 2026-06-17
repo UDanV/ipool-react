@@ -15,6 +15,8 @@ import {
   type ContactFormData,
   type ContactFormErrors,
 } from '@/schemas/contactFormSchema'
+import { sendContactMessage } from '@/api/sendContactMessage'
+import { toast } from '@heroui/react'
 
 interface ContactModalProps {
   isOpen: boolean
@@ -57,10 +59,15 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
     setErrors({})
     setIsSubmitting(true)
 
-    await new Promise((resolve) => setTimeout(resolve, 600))
-
-    setIsSubmitting(false)
-    setIsSubmitted(true)
+    try {
+      await sendContactMessage(result.data)
+      toast.success('Сообщение отправлено')
+    } catch {
+      toast.danger('Не удалось отправить сообщение')
+    } finally {
+      setIsSubmitting(false)
+      setIsSubmitted(true)
+    }
   }
 
   return (

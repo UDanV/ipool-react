@@ -1,11 +1,13 @@
-import gallery1 from "@/assets/gallery_img1.png";
-import gallery2 from "@/assets/gallery_img2.png";
-import gallery3 from "@/assets/gallery_img3.png";
-import gallery4 from "@/assets/gallery_img4.png";
 import zenSchema from "@/assets/zen_modeli_new.png";
 import tettaSchema from "@/assets/tetta2.png";
 import hiitSchema from "@/assets/hiit-models.png";
 import spaceSchema from "@/assets/space-models.png";
+import {
+  hiitImages,
+  spaceImages,
+  tettaImages,
+  zenImages,
+} from "@/types/compositeImport";
 
 export type Pool = {
   title: string;
@@ -43,7 +45,7 @@ export const POOL_DATA: Record<PoolType, Pool> = {
         width: 10,
         length: 3.5,
         depth: 1.5,
-        image: [gallery1, gallery2, gallery3, gallery4],
+        image: [...tettaImages],
       },
       {
         id: "tetta-800",
@@ -52,7 +54,7 @@ export const POOL_DATA: Record<PoolType, Pool> = {
         width: 8,
         length: 3.5,
         depth: 1.5,
-        image: [gallery2],
+        image: [...tettaImages],
       },
       {
         id: "tetta-600",
@@ -61,7 +63,7 @@ export const POOL_DATA: Record<PoolType, Pool> = {
         width: 6,
         length: 3,
         depth: 1.5,
-        image: [gallery2],
+        image: [...tettaImages],
       },
       {
         id: "tetta-500",
@@ -70,7 +72,7 @@ export const POOL_DATA: Record<PoolType, Pool> = {
         width: 5,
         length: 3,
         depth: 1.5,
-        image: [gallery3],
+        image: [...tettaImages],
       },
     ],
   },
@@ -88,7 +90,7 @@ export const POOL_DATA: Record<PoolType, Pool> = {
         width: 10,
         length: 3.5,
         depth: 1.5,
-        image: [gallery1],
+        image: [...zenImages],
       },
       {
         id: "zen-800",
@@ -97,7 +99,7 @@ export const POOL_DATA: Record<PoolType, Pool> = {
         width: 8,
         length: 3.5,
         depth: 1.5,
-        image: [gallery4],
+        image: [...zenImages],
       },
       {
         id: "zen-600",
@@ -106,7 +108,7 @@ export const POOL_DATA: Record<PoolType, Pool> = {
         width: 6,
         length: 3,
         depth: 1.5,
-        image: [gallery1],
+        image: [...zenImages],
       },
       {
         id: "zen-500",
@@ -115,7 +117,7 @@ export const POOL_DATA: Record<PoolType, Pool> = {
         width: 5,
         length: 3,
         depth: 1.5,
-        image: [gallery1],
+        image: [...zenImages],
       },
     ],
   },
@@ -134,7 +136,7 @@ export const POOL_DATA: Record<PoolType, Pool> = {
         width: 9,
         depth: [1.3, 1.7],
         cols: 2,
-        image: [gallery1],
+        image: [...hiitImages],
       },
       {
         id: "hiit-800L",
@@ -144,7 +146,7 @@ export const POOL_DATA: Record<PoolType, Pool> = {
         width: 8,
         depth: [1.3, 1.7],
         cols: 1,
-        image: [gallery1],
+        image: [...hiitImages],
       },
       {
         id: "hiit-800R",
@@ -154,7 +156,7 @@ export const POOL_DATA: Record<PoolType, Pool> = {
         width: 8,
         depth: [1.3, 1.7],
         cols: 1,
-        image: [gallery1],
+        image: [...hiitImages],
       },
       {
         id: "hiit-700",
@@ -163,7 +165,7 @@ export const POOL_DATA: Record<PoolType, Pool> = {
         length: 3.5,
         width: 7,
         depth: [1.3, 1.7],
-        image: [gallery1],
+        image: [...hiitImages],
       },
       {
         id: "hiit-600L",
@@ -172,7 +174,7 @@ export const POOL_DATA: Record<PoolType, Pool> = {
         width: 6,
         length: 3.5,
         depth: [1.3, 1.7],
-        image: [gallery1],
+        image: [...hiitImages],
       },
       {
         id: "hiit-600R",
@@ -181,7 +183,7 @@ export const POOL_DATA: Record<PoolType, Pool> = {
         width: 6,
         length: 3.5,
         depth: [1.3, 1.7],
-        image: [gallery1],
+        image: [...hiitImages],
       },
     ],
   },
@@ -199,7 +201,7 @@ export const POOL_DATA: Record<PoolType, Pool> = {
         width: 10,
         length: 3.5,
         depth: 1.5,
-        image: [gallery1],
+        image: [...spaceImages],
       },
       {
         id: "space-800",
@@ -208,7 +210,7 @@ export const POOL_DATA: Record<PoolType, Pool> = {
         width: 8,
         length: 3.5,
         depth: 1.5,
-        image: [gallery1],
+        image: [...spaceImages],
       },
       {
         id: "space-600",
@@ -217,7 +219,7 @@ export const POOL_DATA: Record<PoolType, Pool> = {
         width: 6,
         length: 3,
         depth: 1.5,
-        image: [gallery1],
+        image: [...spaceImages],
       },
       {
         id: "space-500",
@@ -226,7 +228,7 @@ export const POOL_DATA: Record<PoolType, Pool> = {
         width: 5,
         length: 3,
         depth: 1.5,
-        image: [gallery1],
+        image: [...spaceImages],
       },
     ],
   },

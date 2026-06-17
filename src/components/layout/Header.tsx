@@ -2,11 +2,11 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import logo from "@/assets/logo.svg";
 import RoundedButton from "../ui/roundedButton";
-import burger from "@/assets/burger.svg";
 import MobileMenu from "./MobileMenu";
 import { Link } from "react-router-dom";
 import HeaderDropdown from "../ui/dropDown";
 import { headerMenuItems } from "@/data/headerNav";
+import { Menu } from "lucide-react";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -88,7 +88,7 @@ function Header() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.3, duration: 0.4 }}
         >
-          <img onClick={toggleMenu} src={burger} alt="menu" />
+          <Menu className="w-12 sm:w-15" onClick={toggleMenu} />
         </motion.div>
       </motion.div>
       </header>

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import ImageSwiper from '@/components/ui/imageSwiper'
-import GalleryModal from '@/components/ui/galleryModal'
+import ImageLightbox from '@/components/ui/imageLightbox'
 import SharpButton from '@/components/ui/sharpButton'
 
 interface GalleryProps {
@@ -34,14 +34,14 @@ const Gallery = ({
         onImageClick={openModal}
       />
 
-      <GalleryModal
+      <ImageLightbox
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        images={images}
-        initialIndex={activeIndex}
+        image={images[activeIndex] ?? null}
+        alt={`Изображение ${activeIndex + 1}`}
       />
 
-      {showMore && <SharpButton title={moreTitle} icon="" href={moreHref} />}
+      {showMore && <SharpButton title={moreTitle} href={moreHref} />}
     </div>
   )
 }

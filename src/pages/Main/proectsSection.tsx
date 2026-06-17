@@ -1,10 +1,10 @@
-import lineRB from '@/assets/line-right-bottom.svg'
 import { useState } from 'react';
 import Card from '@/components/ui/card'
 import Filter from '@/components/ui/filter';
 import SharpButton from '@/components/ui/sharpButton'
 import GalleryModal from '@/components/ui/galleryModal';
 import { cards, type CardData } from '@/types/CardData';
+import { MoveDownRightIcon } from 'lucide-react';
 
 interface ProectsSectionProps {
   title?: string;
@@ -71,11 +71,7 @@ const ProectsSection = ({
                 {title}
               </h1>
               {showArrow && (
-                <img
-                  className='hidden lg:block m-3 w-10 translate-y-1.5 lg:translate-y-2.5 lg:w-20'
-                  src={lineRB}
-                  alt=""
-                />
+                <MoveDownRightIcon className="hidden lg:block ml-3 lg:translate-y-7.5" width={54} height={54} />
               )}
             </div>
           )}
@@ -88,11 +84,11 @@ const ProectsSection = ({
         </div>
       )}
 
-      <div className='flex flex-col mt-10 gap-8 sm:gap-11 lg:mt-20'>
+      <div className="mt-10 flex flex-col gap-6 sm:gap-8 lg:mt-20">
         {gridConfig.map((cols, idx) => (
           <div
             key={idx}
-            className={`flex flex-col sm:grid ${gridCols[cols] ?? "sm:grid-cols-2"} sm:p-0 gap-5 p-3 lg:gap-11`}
+            className={`flex flex-col gap-4 p-3 sm:grid sm:gap-5 sm:p-0 lg:gap-6 ${gridCols[cols] ?? 'sm:grid-cols-2'}`}
           >
             {filteredCards.slice(0, cols).map((card, i) => (
               <Card
@@ -107,7 +103,7 @@ const ProectsSection = ({
         ))}
 
         {showButton && (
-          <SharpButton title='Все проекты' href='/spa-box' />
+          <SharpButton title='Все проекты' href='/works' />
         )}
       </div>
 

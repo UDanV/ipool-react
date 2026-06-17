@@ -6,8 +6,8 @@ import galleryImg1 from '@/assets/gallery_img1.png'
 import galleryImg2 from '@/assets/gallery_img2.png'
 import galleryImg3 from '@/assets/gallery_img3.png'
 import galleryImg4 from '@/assets/gallery_img4.png'
-import massageIcon1 from '@/assets/massage-icon1.svg'
-import massageIcon2 from '@/assets/massage-icon2.svg'
+import massageIcon1 from '@/assets/spaBoxIcons/massage-icon1.svg'
+import massageIcon2 from '@/assets/spaBoxIcons/massage-icon2.svg'
 import DesignSection from "./designSection"
 
 const MassageRoomPage = () => {

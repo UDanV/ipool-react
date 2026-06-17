@@ -6,8 +6,8 @@ import galleryImg1 from '@/assets/gallery_img1.png'
 import galleryImg2 from '@/assets/gallery_img2.png'
 import galleryImg3 from '@/assets/gallery_img3.png'
 import galleryImg4 from '@/assets/gallery_img4.png'
-import impressionIcon1 from '@/assets/impression-icon1.svg'
-import impressionIcon2 from '@/assets/impression-icon2.svg'
+import impressionIcon1 from '@/assets/spaBoxIcons/impression-icon1.svg'
+import impressionIcon2 from '@/assets/spaBoxIcons/impression-icon2.svg'
 import DesignSection from "./designSection"
 
 const ImpressionShowerPage = () => {

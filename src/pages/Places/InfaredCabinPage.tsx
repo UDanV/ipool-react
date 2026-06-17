@@ -6,7 +6,7 @@ import galleryImg1 from '@/assets/gallery_img1.png'
 import galleryImg2 from '@/assets/gallery_img2.png'
 import galleryImg3 from '@/assets/gallery_img3.png'
 import galleryImg4 from '@/assets/gallery_img4.png'
-import infraredIcon from '@/assets/infrared-icon.svg'
+import infraredIcon from '@/assets/spaBoxIcons/infrared-icon.svg'
 import DesignSection from "./designSection"
 
 const InfraredCabinPage = () => {

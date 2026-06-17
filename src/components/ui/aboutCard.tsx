@@ -21,7 +21,7 @@ const AboutCard = ({
       <div
         className={
           large
-            ? 'relative min-h-[22rem] sm:min-h-[26rem] md:min-h-[32rem] lg:min-h-[min(68vh,720px)]'
+            ? 'relative min-h-[22rem] sm:min-h-[26rem] md:min-h-[32rem] lg:min-h-[min(68vh,720px)] aspect-[4/3] object-cover'
             : 'relative min-h-64 sm:min-h-80 md:min-h-[22rem] lg:min-h-[28rem] xl:min-h-[32rem]'
         }
       >

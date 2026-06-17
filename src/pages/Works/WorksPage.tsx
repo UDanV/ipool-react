@@ -9,6 +9,7 @@ const Works = () => {
                 gridConfig={[2, 4, 3]}
                 filterClassName='xl:mt-26'
                 className='lg:text-[140px]'
+                showButton={false}
             />
         </>
     )

@@ -3,7 +3,7 @@ import galleryImg1 from '@/assets/gallery_img1.png'
 import galleryImg2 from '@/assets/gallery_img2.png'
 import galleryImg3 from '@/assets/gallery_img3.png'
 import galleryImg4 from '@/assets/gallery_img4.png'
-import ProectsSection from '../Main/proectsSection'
+import SpaBoxCatalog from '@/components/sections/spaBoxCatalog'
 
 const COLLAGE_IMAGES = [galleryImg1, galleryImg2, galleryImg3, galleryImg4]
 
@@ -54,14 +54,7 @@ const SpaBoxPage = () => {
         </div>
       </div>
 
-      <ProectsSection
-        title="Все проекты в spa-box"
-        showArrow={false}
-        gridConfig={[2, 4, 3]}
-        className="lg:text-[110px]"
-        filterClassName="xl:mt-10 xl:mb-10"
-        showButton={false}
-      />
+      <SpaBoxCatalog />
     </>
   )
 }

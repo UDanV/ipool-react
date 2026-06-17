@@ -238,6 +238,13 @@ body {
   padding: 0;
 }
 
+.image-lightbox-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
 .mobile-nav-disclosure .disclosure__indicator {
   color: #687c96;
 }
