@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion'
-import galleryImg1 from '@/assets/gallery_img1.png'
-import galleryImg2 from '@/assets/gallery_img2.png'
-import galleryImg3 from '@/assets/gallery_img3.png'
-import galleryImg4 from '@/assets/gallery_img4.png'
+import {
+  galleryImg1,
+  galleryImg2,
+  galleryImg3,
+  galleryImg4,
+} from '@/data/photoLibrary'
 import SpaBoxCatalog from '@/components/sections/spaBoxCatalog'
 
 const COLLAGE_IMAGES = [galleryImg1, galleryImg2, galleryImg3, galleryImg4]
@@ -10,7 +12,7 @@ const COLLAGE_IMAGES = [galleryImg1, galleryImg2, galleryImg3, galleryImg4]
 const SpaBoxPage = () => {
   return (
     <>
-      <div className="relative mt-8 min-h-[520px] overflow-hidden border border-black sm:min-h-[620px] lg:min-h-[calc(100vh_-_110px)]">
+      <div className="relative mt-0 flex min-h-[calc(100dvh_-_80px)] flex-col bg-cover bg-center bg-no-repeat lg:mt-8 lg:min-h-[calc(100dvh_-_130px)]">
         <div className="absolute inset-0 grid grid-cols-2 lg:grid-cols-4">
           {COLLAGE_IMAGES.map((image, index) => (
             <motion.div

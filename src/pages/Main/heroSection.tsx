@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import HeroBanner from '@/components/sections/heroBanner'
-import main from '@/assets/main.png'
-import poolPhoto from '@/assets/pool-img-temp.jpg'
-import saunaPhoto from '@/assets/sauna-img-temp.jpg'
+import { heroBackgrounds } from '@/data/photoLibrary'
 
-const DEFAULT_BACKGROUNDS = [main, poolPhoto, saunaPhoto]
+const DEFAULT_BACKGROUNDS = [...heroBackgrounds]
 const SLIDE_INTERVAL_MS = 5000
 
 interface HeroSectionProps {
@@ -36,7 +34,7 @@ const HeroSection = ({
 
   return (
     <>
-      <div className="relative mt-8 min-h-[520px] overflow-hidden sm:min-h-[620px] lg:min-h-[calc(100vh_-_110px)]">
+      <div className="relative mt-0 min-h-[calc(100dvh_-_80px)] overflow-hidden lg:mt-8 lg:min-h-[calc(100dvh_-_130px)]">
         <AnimatePresence mode="sync">
           <motion.div
             key={activeIndex}

@@ -1,10 +1,12 @@
-import galleryImg1 from '@/assets/gallery_img1.png'
-import galleryImg2 from '@/assets/gallery_img2.png'
-import galleryImg3 from '@/assets/gallery_img3.png'
-import galleryImg4 from '@/assets/gallery_img4.png'
-import poolPhoto from '@/assets/pool-img-temp.jpg'
-import saunaPhoto from '@/assets/sauna-img-temp.jpg'
-import saltRoomPhoto from '@/assets/salt-room-temp.jpg'
+import {
+  galleryImg1,
+  galleryImg2,
+  galleryImg3,
+  galleryImg4,
+  poolPhoto,
+  saunaPhoto,
+  saltRoomPhoto,
+} from '@/data/photoLibrary'
 
 export type SpaBoxCard = {
   title: string

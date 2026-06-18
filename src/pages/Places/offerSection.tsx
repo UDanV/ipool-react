@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import buddaImg from '@/assets/budda-image.png'
 
 const textReveal = {
   initial: { opacity: 0, y: 40 },
@@ -8,13 +7,13 @@ const textReveal = {
   transition: { duration: 0.5, ease: 'backOut' as const },
 }
 
-const OfferSection = ({ title }: { title: string }) => {
+const OfferSection = ({ title, image }: { title: string, image: string }) => {
   return (
     <div className="mt-20 flex flex-col gap-28 px-4 sm:px-8 lg:mt-28 lg:gap-48 2xl:gap-96">
       <div className="m-auto flex max-w-[90dvw] flex-col items-center justify-around gap-10 2xl:flex-row">
         <img
-          className="h-auto max-w-[300px] sm:max-w-[400px] lg:max-w-none"
-          src={buddaImg}
+          className="h-auto max-w-xl"
+          src={image}
           alt=""
         />
         <div className="mt-8 mr-0 flex max-w-full flex-col lg:mt-0 lg:max-w-4xl 2xl:ml-30">
@@ -44,8 +43,8 @@ const OfferSection = ({ title }: { title: string }) => {
 
       <div className="m-auto flex max-w-[90dvw] flex-col items-center justify-around gap-10 2xl:flex-row-reverse">
         <img
-          className="h-auto max-w-[300px] sm:max-w-[400px] lg:max-w-none"
-          src={buddaImg}
+          className="h-auto max-w-xl"
+          src={image}
           alt=""
         />
         <div className="mt-8 mr-0 flex max-w-full flex-col gap-9 lg:mt-0 lg:max-w-4xl 2xl:mr-30">

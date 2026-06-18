@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import spaBox from "@/assets/spa-box.png";
 import beachCircle from "@/assets/inflatable_ring.png";
+import spaBox from "@/assets/office/IMG_3871-HDR.jpg";
 import SharpButton from "@/components/ui/sharpButton";
 
 const SpaBoxSection = () => {

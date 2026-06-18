@@ -7,7 +7,11 @@ import roomImage from "@/assets/room-image.png";
 const CompositePools = () => {
   return (
     <>
-      <HeroSectionSpa title="Композитный бассейн" icon={poolIcon} poolsarLogo={true} />
+      <HeroSectionSpa
+        title="Композитный бассейн"
+        icon={poolIcon}
+        poolsarLogo={true}
+      />
       <PoolSchemeBlock />
       <div className="w-full mt-24 mb-28 px-3 lg:mt-48 lg:mb-48 2xl:mt-120 2xl:mb-96">
         <img

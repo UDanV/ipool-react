@@ -4,9 +4,10 @@ interface RoundedButtonProps {
   children: ReactNode;
   className?: string;
   href?: string;
+  onClick?: () => void;
 }
 
-function RoundedButton({ children, className = "", href }: RoundedButtonProps) {
+function RoundedButton({ children, className = "", href, onClick }: RoundedButtonProps) {
   const baseClasses = `border cursor-pointer text-[#2E2E2E] px-4 py-2 rounded-full ${className}`;
 
   if (href) {
@@ -17,7 +18,11 @@ function RoundedButton({ children, className = "", href }: RoundedButtonProps) {
     );
   }
 
-  return <button className={baseClasses}>{children}</button>;
+  return (
+    <button type="button" onClick={onClick} className={baseClasses}>
+      {children}
+    </button>
+  );
 }
 
 export default RoundedButton;

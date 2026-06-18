@@ -1,96 +1,92 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import logo from "@/assets/logo.svg";
-import RoundedButton from "../ui/roundedButton";
 import MobileMenu from "./MobileMenu";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import HeaderDropdown from "../ui/dropDown";
 import { headerMenuItems } from "@/data/headerNav";
 import { Menu } from "lucide-react";
 
+const navLinkClass = ({ isActive }: { isActive: boolean }) =>
+  `relative transition-colors duration-200 hover:text-[#687C96] ${
+    isActive ? "text-[#687C96]" : "text-[#2E2E2E]"
+  } after:absolute after:-bottom-1 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-[#687C96] after:transition-transform hover:after:scale-x-100 ${
+    isActive ? "after:scale-x-100" : ""
+  }`;
+
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  const toggleMenu = () => setIsMenuOpen((open) => !open);
+  const closeMenu = () => setIsMenuOpen(false);
 
   return (
     <>
-      <MobileMenu onClose={toggleMenu} isOpen={isMenuOpen} />
+      <MobileMenu onClose={closeMenu} isOpen={isMenuOpen} />
 
-      <header className="sticky top-0 z-40 bg-[#F9FAFD]/95 pt-0 lg:pt-5.5 backdrop-blur-sm">
-      <motion.div
-        className="w-full max-w-[90dvw] flex items-center justify-between 2xl:px-8 lg:border-y lg:border-black mx-auto"
-        initial={{ y: -50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: [0.17, 0.67, 0.83, 0.67] }}
-      >
+      <header className="sticky top-0 z-40 px-3 pt-3 sm:px-4 lg:px-0 lg:pt-5">
         <motion.div
-          className="flex-shrink-0 py-4 lg:border-r lg:border-black lg:pr-4 xl:pr-8 2xl:pr-32"
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
+          className="mx-auto flex w-full max-w-[90dvw] items-center justify-between gap-4 rounded-2xl border border-black/10 bg-white/90 px-4 py-3 shadow-sm backdrop-blur-md sm:px-5 lg:px-6 lg:py-4"
+          initial={{ y: -24, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         >
-          <Link to={"/"}>
-            <img className="w-auto" src={logo} alt="logo" />
+          <Link
+            to="/"
+            className="flex shrink-0 items-center py-1 transition-opacity hover:opacity-80"
+          >
+            <img className="h-8 w-auto sm:h-9 lg:h-10" src={logo} alt="iPool" />
           </Link>
-        </motion.div>
 
-        <div className="hidden lg:flex flex-1 justify-center">
-          <ul className="flex font-semibold uppercase gap-3 xl:gap-6 2xl:gap-11 text-[#2E2E2E] text-[clamp(0.78rem,0.9vw,1.25rem)] whitespace-nowrap">
-            {headerMenuItems.map((item, i) => {
-              if (item.dropdown) {
+          <nav className="hidden flex-1 justify-center lg:flex">
+            <ul className="flex items-center gap-4 whitespace-nowrap text-[clamp(0.78rem,0.9vw,1.05rem)] font-semibold uppercase xl:gap-7 2xl:gap-9">
+              {headerMenuItems.map((item, i) => {
+                if (item.dropdown) {
+                  return (
+                    <HeaderDropdown
+                      key={item.label}
+                      label={item.label}
+                      triggerTo={item.to}
+                      items={item.dropdown}
+                      delay={0.15 + i * 0.05}
+                    />
+                  );
+                }
+
                 return (
-                  <HeaderDropdown
+                  <motion.li
                     key={item.label}
-                    label={item.label}
-                    triggerTo={item.to}
-                    items={item.dropdown}
-                    className="px-1"
-                    delay={0.2 * i}
-                  />
+                    initial={{ opacity: 0, y: -8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 + i * 0.05, duration: 0.35 }}
+                  >
+                    <NavLink to={item.to} className={navLinkClass}>
+                      {item.label}
+                    </NavLink>
+                  </motion.li>
                 );
-              }
+              })}
+            </ul>
+          </nav>
 
-              return (
-                <motion.li
-                  key={item.label}
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 + i * 0.1, duration: 0.4 }}
-                >
-                  <Link to={item.to} className="hover:text-[#687C96]">
-                    {item.label}
-                  </Link>
-                </motion.li>
-              );
-            })}
-          </ul>
-        </div>
-
-        <motion.div
-          className="hidden lg:flex flex-shrink-0 lg:border-l lg:border-black lg:pl-4 xl:pl-8 2xl:pl-17 self-stretch items-center"
-          initial={{ opacity: 0, x: 30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.5, duration: 0.5 }}
-        >
-          <Link to="/contacts">
-            <RoundedButton className="px-4 py-2 xl:px-8 xl:py-4 uppercase text-sm xl:text-xl border-black border-2 font-semibold rounded-full">
+          <div className="hidden shrink-0 items-center lg:flex">
+            <Link
+              to="/contacts"
+              className="rounded-full border-2 border-[#687C96] bg-[#687C96] px-5 py-2.5 text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-[#5a6d84] hover:border-[#5a6d84] xl:px-7 xl:py-3 xl:text-base"
+            >
               Контакты
-            </RoundedButton>
-          </Link>
-        </motion.div>
+            </Link>
+          </div>
 
-        <motion.div
-          className="flex lg:hidden cursor-pointer"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.3, duration: 0.4 }}
-        >
-          <Menu className="w-12 sm:w-15" onClick={toggleMenu} />
+          <button
+            type="button"
+            aria-label={isMenuOpen ? "Закрыть меню" : "Открыть меню"}
+            onClick={toggleMenu}
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-black/15 bg-[#F4F7FA] text-[#2E2E2E] transition hover:border-[#687C96]/40 hover:text-[#687C96] lg:hidden"
+          >
+            <Menu className="h-6 w-6" />
+          </button>
         </motion.div>
-      </motion.div>
       </header>
     </>
   );

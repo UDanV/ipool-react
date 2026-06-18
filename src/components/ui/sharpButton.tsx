@@ -1,5 +1,5 @@
-import { ArrowUpRightIcon } from 'lucide-react';
-import React from 'react';
+import { ArrowUpRightIcon } from "lucide-react";
+import React from "react";
 
 interface SharpButtonProps {
   title: string;
@@ -10,7 +10,7 @@ interface SharpButtonProps {
 
 const SharpButton: React.FC<SharpButtonProps> = ({
   title,
-  className = '',
+  className = "",
   href,
   onPress,
 }) => {
@@ -21,8 +21,7 @@ const SharpButton: React.FC<SharpButtonProps> = ({
     </>
   );
 
-  const baseClasses =
-    `bg-black text-base sm:text-2xl text-white font-bold flex items-center justify-center gap-2 py-6 sm:py-10 sm:m-0 2xl:w-full cursor-pointer ${className}`;
+  const baseClasses = `bg-black text-base sm:text-2xl text-white font-bold flex items-center justify-center gap-2 py-6 sm:py-10 sm:m-0 2xl:w-full cursor-pointer ${className}`;
 
   if (href) {
     return (
@@ -32,7 +31,11 @@ const SharpButton: React.FC<SharpButtonProps> = ({
     );
   }
 
-  return <button className={baseClasses} onClick={onPress}>{content}</button>;
+  return (
+    <button className={baseClasses} onClick={onPress}>
+      {content}
+    </button>
+  );
 };
 
 export default SharpButton;

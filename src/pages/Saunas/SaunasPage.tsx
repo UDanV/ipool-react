@@ -7,12 +7,12 @@ const SaunasPage = () => {
         <>
             <HeroSectionSpa title="Сауны" icon={saunasIcon} centeredTitle={true}></HeroSectionSpa>
             <ProectsSection 
-                gridConfig={[2, 3]}
                 filterClassName='xl:mt-26'
                 className='lg:text-[140px]'
                 showHeader={false} 
                 showFilter={false}
                 showButton={false}
+                showSaunas={true}
             />
         </>
     )

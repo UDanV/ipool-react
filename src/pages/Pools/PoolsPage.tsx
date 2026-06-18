@@ -1,8 +1,7 @@
 import HeroSectionSpa from '@/pages/Places/heroSection'
 import AboutCard from '@/components/ui/aboutCard'
 import poolIcon from '@/assets/spaBoxIcons/pool-icon.svg'
-import poolPhoto from '@/assets/pool-img-temp.jpg'
-import concretePhoto from '@/assets/concrete-pool.png'
+import { concretePhoto, poolPhoto } from '@/data/photoLibrary'
 
 const PoolsPage = () => {
   return (

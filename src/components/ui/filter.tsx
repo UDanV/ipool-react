@@ -1,33 +1,34 @@
 import RoundedButton from "./roundedButton";
+import type { FilterTab } from "@/data/projects";
 
-const buttonLabels = [
-  "Всё",
-  "Бассейны",
-  "Сауны",
-  "Дорожки Кнейпа",
-  "Соляные комнаты",
-  "Души впечатлений",
-  "Хамамы",
-  "Массажные кабинеты",
-  "Инфракрасные кабины",
-  "Ледогенераторы",
-  "Сауны кроксен",
-  "Травяная сауна",
+const tabs: { id: FilterTab; label: string }[] = [
+  { id: "all", label: "Всё" },
+  { id: "pools", label: "Бассейны" },
+  { id: "saunas", label: "Сауны" },
 ];
 
-const Filter = ({ className = "" }) => {
+interface FilterProps {
+  className?: string;
+  value?: FilterTab;
+  onChange?: (tab: FilterTab) => void;
+}
+
+const Filter = ({ className = "", value = "all", onChange }: FilterProps) => {
   return (
     <div
-      className={`${className} flex flex-wrap gap-3 w-full pt-12 2xl:ml-auto 2xl:max-w-[700px] sm:p-0 p-3`}
+      className={`${className} flex w-full flex-wrap gap-2 rounded-2xl bg-[#EDEDED] p-1.5 sm:gap-3 sm:p-2`}
     >
-      {buttonLabels.map((label, index) => (
+      {tabs.map((tab) => (
         <RoundedButton
-          key={index}
-          className={`px-4 py-2 font-normal w-auto text-base rounded-full 2xl:flex-auto 2xl:text-xl 2xl:w-auto ${
-            index === 0 ? "bg-[#687C96] text-white border border-[#687C96]" : ""
+          key={tab.id}
+          className={`flex-1 px-4 py-2.5 text-center text-sm font-semibold transition-all duration-200 sm:min-w-[120px] sm:text-base lg:text-lg ${
+            value === tab.id
+              ? "border-[#687C96] bg-[#687C96] text-white shadow-sm"
+              : "border-transparent bg-transparent text-[#2E2E2E] hover:bg-white/70"
           }`}
+          onClick={() => onChange?.(tab.id)}
         >
-          {label}
+          {tab.label}
         </RoundedButton>
       ))}
     </div>

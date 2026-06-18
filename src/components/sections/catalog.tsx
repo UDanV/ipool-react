@@ -1,5 +1,4 @@
-import merch1 from '@/assets/merch1.png'
-import merch2 from '@/assets/merch2.png'
+import { merch1, merch2 } from '@/data/photoLibrary'
 
 const Catalog = () => {
     return (

@@ -12,6 +12,7 @@ const Main = () => {
                 className='lg:text-[140px]'
                 filterClassName='xl:mt-26'
                 gridConfig={[2, 4, 3]}
+                showFilter={false}
             />
             <SpaBoxSection />
         </>

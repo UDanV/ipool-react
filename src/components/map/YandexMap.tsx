@@ -3,7 +3,7 @@ import logo from "@/assets/logo-ico.png";
 
 const YandexMap = () => {
   return (
-    <div className="w-full h-[50vh] max-w-[90dvw] m-auto">
+    <div className="h-[min(50dvh,420px)] w-full">
       <YMaps query={{ apikey: import.meta.env.VITE_API_YA_KEY }}>
         <Map
           defaultState={{ center: [47.258663, 39.798403], zoom: 17 }}
@@ -17,7 +17,7 @@ const YandexMap = () => {
               iconCaption: "iPool",
               hintContent: "г. Ростов-на-Дону, ул. Зеленая 8а",
               balloonContent:
-                "<b>iPool</b><br/>Вр--емя работы:<br/>09:00 - 18:00",
+                "<b>iPool</b><br/>Время работы:<br/>09:00 - 18:00",
             }}
             options={{
               iconLayout: "default#image",

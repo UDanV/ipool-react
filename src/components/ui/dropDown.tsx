@@ -1,6 +1,6 @@
 import { ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import {
   Description,
   Dropdown,
@@ -34,9 +34,16 @@ const HeaderDropdown = ({
     >
       <div className="flex items-center gap-1">
         {triggerTo ? (
-          <Link to={triggerTo} className="cursor-pointer hover:text-[#687C96]">
+          <NavLink
+            to={triggerTo}
+            className={({ isActive }) =>
+              `cursor-pointer transition-colors duration-200 hover:text-[#687C96] ${
+                isActive ? "text-[#687C96]" : ""
+              }`
+            }
+          >
             {label}
-          </Link>
+          </NavLink>
         ) : (
           <span>{label}</span>
         )}
@@ -44,12 +51,12 @@ const HeaderDropdown = ({
         <Dropdown>
           <Dropdown.Trigger
             aria-label={`Подменю ${label}`}
-            className="inline-flex cursor-pointer items-center rounded-md p-1 text-[#2E2E2E] transition hover:bg-black/5 hover:text-[#687C96]"
+            className="inline-flex cursor-pointer items-center rounded-full border border-transparent p-1.5 text-[#2E2E2E] transition hover:border-black/10 hover:bg-[#F4F7FA] hover:text-[#687C96]"
           >
             <ChevronDown className="h-4 w-4" />
           </Dropdown.Trigger>
 
-          <Dropdown.Popover className="min-w-[15rem] rounded-xl border border-black/10 bg-[#F9FAFD] shadow-xl">
+          <Dropdown.Popover className="min-w-[15rem] rounded-xl border border-black/10 bg-white p-1 shadow-lg">
             <Dropdown.Menu
               onAction={(key) => navigate(String(key))}
               className="py-1"

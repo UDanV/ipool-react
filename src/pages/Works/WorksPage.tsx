@@ -10,6 +10,7 @@ const Works = () => {
                 filterClassName='xl:mt-26'
                 className='lg:text-[140px]'
                 showButton={false}
+                showAll
             />
         </>
     )

@@ -23,7 +23,7 @@ const HeroBanner = ({
             <div className='flex flex-col border border-black p-5 justify-between w-full items-start 2xl:mr-16 lg:max-w-74 lg:border-l-0 lg:p-10 lg:border-b-0 lg:border-t-0 lg:border-r'>
                 <h2 className='uppercase font-semibold text-xl text-[#2E2E2E] lg:text-2xl'>Что в box’е?</h2>
                 <a href="/spa-box" className='ml-auto rounded-full p-2 hover:shadow-2xl transition-shadow border border-black'>
-                    <ArrowUpRightIcon className='hidden w-15 lg:block hover:shadow-2xl transition-shadow rounded-full' />
+                    <ArrowUpRightIcon className='w-8 lg:w-15 hover:shadow-2xl transition-shadow rounded-full' />
                 </a>
             </div>
         </div>

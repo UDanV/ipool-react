@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import bg from '@/assets/bg-spabox.png'
 import poolsarLogoImg from '@/assets/poolsar_logo.bmp'
 import HeroBanner from '@/components/sections/heroBanner'
 
@@ -7,12 +6,14 @@ const HeroSectionSpa = ({
   title,
   icon,
   poolsarLogo = false,
+  background,
   secondIcon,
   centeredTitle = false,
 }: {
   title: string
   icon?: string
   poolsarLogo?: boolean
+  background?: string
   secondIcon?: string
   centeredTitle?: boolean
 }) => {
@@ -23,10 +24,10 @@ const HeroSectionSpa = ({
       transition={{ duration: 1 }}
     >
       <div
-        className={`relative mt-8 flex min-h-[520px] flex-col bg-cover bg-center bg-no-repeat sm:min-h-[620px] lg:min-h-[calc(100vh_-_150px)] ${
+        className={`relative mt-0 flex min-h-[calc(100dvh_-_80px)] flex-col bg-cover bg-center bg-no-repeat lg:mt-8 lg:min-h-[calc(100dvh_-_130px)] ${
           centeredTitle ? 'justify-center' : 'justify-end'
         }`}
-        style={{ backgroundImage: `url(${poolsarLogo ? poolsarLogoImg : bg})` }}
+        style={{ backgroundImage: `url(${poolsarLogo ? poolsarLogoImg : background})` }}
       >
         <div
           className={`flex flex-col justify-center ${
@@ -39,9 +40,9 @@ const HeroSectionSpa = ({
             initial={{ y: 150, visibility: 'hidden' }}
             animate={{ y: 0, visibility: 'visible' }}
             transition={{ duration: 0.5, ease: 'backOut', delay: 1 }}
-            className={`mb-8 max-w-full text-[clamp(2.5rem,12vw,4rem)] font-bold uppercase leading-tight sm:text-6xl md:text-7xl lg:mb-0 lg:max-w-[60%] lg:text-[100px] ${
+            className={`mb-8 max-w-full text-[clamp(2.5rem,12vw,3rem)] font-bold uppercase leading-tight sm:text-6xl md:text-7xl lg:mb-0 lg:max-w-[40%] lg:text-[100px] ${
               centeredTitle ? 'text-center' : 'text-center lg:text-left'
-            } ${poolsarLogo ? 'pt-10 sm:pt-12 lg:pt-0' : ''}`}
+            } ${poolsarLogo ? 'text-white' : ''}`}
           >
             {title}
           </motion.h1>

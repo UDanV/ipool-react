@@ -1,17 +1,17 @@
-import { useId } from 'react'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { A11y, Keyboard, Navigation } from 'swiper/modules'
+import { useId } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { A11y, Keyboard, Navigation } from "swiper/modules";
 
-import 'swiper/css'
+import "swiper/css";
 
 interface ImageSwiperProps {
-  images: string[]
-  variant?: 'section' | 'modal'
-  className?: string
-  initialSlide?: number
-  onSlideChange?: (index: number) => void
-  onImageClick?: (index: number) => void
+  images: string[];
+  variant?: "section" | "modal";
+  className?: string;
+  initialSlide?: number;
+  onSlideChange?: (index: number) => void;
+  onImageClick?: (index: number) => void;
 }
 
 const sectionBreakpoints = {
@@ -20,28 +20,28 @@ const sectionBreakpoints = {
   768: { slidesPerView: 2, spaceBetween: 16 },
   1024: { slidesPerView: 3, spaceBetween: 20 },
   1280: { slidesPerView: 3, spaceBetween: 24 },
-}
+};
 
 const ImageSwiper = ({
   images,
-  variant = 'section',
-  className = '',
+  variant = "section",
+  className = "",
   initialSlide = 0,
   onSlideChange,
   onImageClick,
 }: ImageSwiperProps) => {
-  const uid = useId().replace(/:/g, '')
-  const prevClass = `ipool-swiper-prev-${uid}`
-  const nextClass = `ipool-swiper-next-${uid}`
+  const uid = useId().replace(/:/g, "");
+  const prevClass = `ipool-swiper-prev-${uid}`;
+  const nextClass = `ipool-swiper-next-${uid}`;
 
   const navClass =
-    variant === 'modal' ? 'ipool-swiper-nav-modal' : 'ipool-swiper-nav-section'
+    variant === "modal" ? "ipool-swiper-nav-modal" : "ipool-swiper-nav-section";
 
-  const isSection = variant === 'section'
+  const isSection = variant === "section";
 
   return (
-    <div className={`ipool-swiper ${className}`}>
-      <div className="relative">
+    <div className={`ipool-swiper ${isSection ? "" : "ipool-swiper-modal-root"} ${className}`}>
+      <div className={isSection ? "relative" : "relative ipool-swiper-modal-wrapper"}>
         {images.length > 1 && (
           <>
             <button
@@ -63,9 +63,9 @@ const ImageSwiper = ({
         <Swiper
           modules={[Navigation, Keyboard, A11y]}
           onBeforeInit={(swiper) => {
-            if (typeof swiper.params.navigation !== 'boolean') {
-              swiper.params.navigation!.prevEl = `.${prevClass}`
-              swiper.params.navigation!.nextEl = `.${nextClass}`
+            if (typeof swiper.params.navigation !== "boolean") {
+              swiper.params.navigation!.prevEl = `.${prevClass}`;
+              swiper.params.navigation!.nextEl = `.${nextClass}`;
             }
           }}
           navigation={{
@@ -82,7 +82,7 @@ const ImageSwiper = ({
           spaceBetween={isSection ? 12 : 0}
           slidesPerView={isSection ? 1 : 1}
           breakpoints={isSection ? sectionBreakpoints : undefined}
-          className={isSection ? 'ipool-swiper-main' : 'ipool-swiper-modal'}
+          className={isSection ? "ipool-swiper-main" : "ipool-swiper-modal"}
         >
           {images.map((src, index) => (
             <SwiperSlide key={`${src}-${index}`}>
@@ -102,14 +102,16 @@ const ImageSwiper = ({
                   />
                 </button>
               ) : (
-                <div className={isSection ? 'ipool-swiper-slide-frame' : 'h-full'}>
+                <div
+                  className={isSection ? "ipool-swiper-slide-frame" : "h-full"}
+                >
                   <img
                     src={src}
                     alt={`Изображение ${index + 1}`}
                     className={
                       isSection
-                        ? 'ipool-swiper-slide-image'
-                        : 'h-full w-full object-contain'
+                        ? "ipool-swiper-slide-image"
+                        : "h-full w-full object-contain"
                     }
                     loading="lazy"
                   />
@@ -120,7 +122,7 @@ const ImageSwiper = ({
         </Swiper>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ImageSwiper
+export default ImageSwiper;
