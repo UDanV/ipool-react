@@ -1,7 +1,7 @@
 import HeroSectionSpa from '@/pages/Places/heroSection'
 import AboutCard from '@/components/ui/aboutCard'
 import poolIcon from '@/assets/spaBoxIcons/pool-icon.svg'
-import { concretePhoto, poolPhoto } from '@/data/photoLibrary'
+import { concretePhoto, compositePhoto } from '@/data/photoLibrary'
 
 const PoolsPage = () => {
   return (
@@ -12,7 +12,7 @@ const PoolsPage = () => {
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 max-w-[90dvw] m-auto">
           <AboutCard
             large
-            bg={poolPhoto}
+            bg={compositePhoto}
             title="Композитные"
             subtitle="Готовые чаши и быстрый монтаж под ключ"
             link="/pools/composite"

@@ -3,33 +3,51 @@ export type FilterTab = 'all' | 'pools' | 'saunas'
 
 export interface Project {
   id: number
-  category: ProjectCategory
+  categories: ProjectCategory[]
   title: string
   subtitle: string
   images: string[]
   cover: string
 }
 
-const PROJECT_CATEGORIES: Record<number, ProjectCategory> = {
-  1: 'pool',
-  2: 'pool',
-  3: 'pool',
-  4: 'pool',
-  5: 'pool',
-  6: 'pool',
-  7: 'pool',
-  9: 'pool',
-  10: 'pool',
-  11: 'pool',
-  15: 'pool',
-  19: 'pool',
-  8: 'sauna',
-  12: 'sauna',
-  13: 'sauna',
-  14: 'sauna',
-  16: 'sauna',
-  17: 'sauna',
-  18: 'sauna',
+const BOTH_CATEGORIES = new Set([1, 7, 8, 10, 11, 13, 17, 18, 19])
+const POOL_ONLY = new Set([2, 3, 4, 5, 6, 9, 12, 15, 16])
+const SAUNA_ONLY = new Set([14])
+
+const getProjectCategories = (id: number): ProjectCategory[] => {
+  const categories: ProjectCategory[] = []
+
+  if (BOTH_CATEGORIES.has(id) || POOL_ONLY.has(id)) {
+    categories.push('pool')
+  }
+
+  if (BOTH_CATEGORIES.has(id) || SAUNA_ONLY.has(id)) {
+    categories.push('sauna')
+  }
+
+  return categories
+}
+
+const PROJECT_TITLES: Record<number, string> = {
+  1: 'AQUA',
+  2: 'HORIZON',
+  3: "LOVER'S",
+  4: 'CASCADE',
+  5: 'INFINITY',
+  6: 'REFLECT',
+  7: 'CURRENT',
+  8: 'EMBER',
+  9: 'RIPPLE',
+  10: 'VELOCITY',
+  11: 'MONOLITH',
+  12: 'WHISPER',
+  13: 'ZENITH',
+  14: 'SUNSET',
+  15: 'PYRAMID',
+  16: 'HAPPINESS',
+  17: 'MIST',
+  18: 'RETREAT',
+  19: 'ECLIPSE',
 }
 
 const imageModules = import.meta.glob(
@@ -57,13 +75,12 @@ const buildProjects = (): Project[] => {
   return [...grouped.entries()]
     .sort(([a], [b]) => a - b)
     .map(([id, images]) => {
-      const category = PROJECT_CATEGORIES[id] ?? 'pool'
       const sortedImages = [...images].sort((a, b) => a.localeCompare(b))
 
       return {
         id,
-        category,
-        title: category === 'pool' ? 'Бассейн' : 'Сауна',
+        categories: getProjectCategories(id),
+        title: PROJECT_TITLES[id] ?? '',
         subtitle: `#${id}`,
         images: sortedImages,
         cover: sortedImages[0],
@@ -77,7 +94,13 @@ export const filterProjects = (
   tab: FilterTab,
   items: Project[] = projects,
 ): Project[] => {
-  if (tab === 'pools') return items.filter((project) => project.category === 'pool')
-  if (tab === 'saunas') return items.filter((project) => project.category === 'sauna')
+  if (tab === 'pools') {
+    return items.filter((project) => project.categories.includes('pool'))
+  }
+
+  if (tab === 'saunas') {
+    return items.filter((project) => project.categories.includes('sauna'))
+  }
+
   return items
 }

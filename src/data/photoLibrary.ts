@@ -1,11 +1,12 @@
-import galleryImg1 from "@/assets/projects/1/1ED_3104.jpg";
-import galleryImg2 from "@/assets/projects/8/DEN_9180.jpg";
-import galleryImg3 from "@/assets/projects/12/DEN_1867.jpg";
+import galleryImg1 from "@/assets/office/IMG_3889-HDR.jpg";
+import galleryImg2 from "@/assets/office/IMG_3749-HDR.jpg";
+import galleryImg3 from "@/assets/office/IMG_3783-HDR.jpg";
 import galleryImg4 from "@/assets/office/IMG_3796-HDR.jpg";
 
 import poolPhoto from "@/assets/projects/7/1ED_2092.jpg";
 import saunaPhoto from "@/assets/projects/13/20200115_121133.jpg";
-import concretePhoto from "@/assets/projects/5/1ED_5119.jpg";
+import concretePhoto from "@/assets/projects/11/1ED_6682.jpg";
+import compositePhoto from "@/assets/projects/19/20220121_170600.jpg";
 import impressionShowerPhoto from "@/assets/projects/10/1ED_8022.jpg";
 import herbalSaunaPhoto from "@/assets/office/IMG_3749-HDR.jpg";
 import saltRoomPhoto from "@/assets/office/IMG_3783-HDR.jpg";
@@ -33,6 +34,7 @@ export {
   saunaPhoto,
   saltRoomPhoto,
   concretePhoto,
+  compositePhoto,
   officeImg,
   officeImg2,
   templateImg,

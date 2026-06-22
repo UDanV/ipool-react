@@ -40,7 +40,7 @@ const HeroSectionSpa = ({
             initial={{ y: 150, visibility: 'hidden' }}
             animate={{ y: 0, visibility: 'visible' }}
             transition={{ duration: 0.5, ease: 'backOut', delay: 1 }}
-            className={`mb-8 max-w-full text-[clamp(2.5rem,12vw,3rem)] font-bold uppercase leading-tight sm:text-6xl md:text-7xl lg:mb-0 lg:max-w-[40%] lg:text-[100px] ${
+            className={`mb-8 max-w-full text-[clamp(2.5rem,12vw,2rem)] font-bold uppercase leading-tight sm:text-6xl md:text-7xl lg:mb-0 lg:max-w-[40%] lg:text-[100px] ${
               centeredTitle ? 'text-center' : 'text-center lg:text-left'
             } ${poolsarLogo ? 'text-white' : ''}`}
           >

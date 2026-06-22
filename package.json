@@ -14,6 +14,7 @@
     "@heroui/styles": "^3.1.0",
     "@number-flow/react": "^0.6.0",
     "@tailwindcss/vite": "^4.1.11",
+    "@videojs/react": "^10.0.0-beta.24",
     "framer-motion": "^12.23.12",
     "lucide-react": "^0.562.0",
     "react": "^19.1.0",

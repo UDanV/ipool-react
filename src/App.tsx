@@ -3,22 +3,12 @@ import Main from "@/pages/Main/MainPage"
 import Layout from "@/components/layout/Layout"
 import Works from "@/pages/Works/WorksPage"
 import Contacts from "@/pages/Contacts/ContactsPage"
-import KneipPathPage from "@/pages/Places/KneipPathPage"
-import MassageRoomPage from "@/pages/Places/MassageRoomPage"
-import InfraredCabinPage from "@/pages/Places/InfaredCabinPage"
-import IceGeneratorPage from "@/pages/Places/IceGeneratorPage"
-import CroxenSaunaPage from "@/pages/Places/CroxenSaunaPage"
-import HerbalSaunaPage from "@/pages/Places/HerbalSaunaPage"
-import HamamPage from "@/pages/Places/HamamPage"
-import ImpressionShowerPage from "@/pages/Places/ImpressionShowerPage"
-import SaltRoomPage from "@/pages/Places/SaltRoomPage"
-import PoolsPageSpaBox from "@/pages/Places/Pools"
+import SpaBoxPlacePage from "@/pages/Places/SpaBoxPlacePage"
 import PoolsPage from "@/pages/Pools/PoolsPage"
 import SpaBoxPage from "@/pages/SpaBox/SpaBoxPage"
 import ScrollToTop from "@/components/ui/scrollToTop"
 import AboutPage from "@/pages/About/AboutPage"
 import ActivityPage from "@/pages/Activity/ActivityPage"
-import SaunasPageSpaBox from "@/pages/Places/SaunasPage"
 import SaunasPage from "@/pages/Saunas/SaunasPage"
 import CompositePools from "./pages/Pools/CompositePools"
 import ConcretePools from "./pages/Pools/ConcretePools"
@@ -36,17 +26,17 @@ function App() {
           <Route path="/activity" element={<ActivityPage />}/>
           <Route path="/contacts" element={<Contacts />}/>
           <Route path="/spa-box" element={<SpaBoxPage />}/>
-          <Route path="/spa-box/kneipPath" element={<KneipPathPage />}/>
-          <Route path="/spa-box/massageRoom" element={<MassageRoomPage />}/>
-          <Route path="/spa-box/infraredCabin" element={<InfraredCabinPage />}/>
-          <Route path="/spa-box/iceGenerator" element={<IceGeneratorPage />}/>
-          <Route path="/spa-box/saunaCraxen" element={<CroxenSaunaPage />}/>
-          <Route path="/spa-box/hamam" element={<HamamPage />}/>
-          <Route path="/spa-box/impressionShower" element={<ImpressionShowerPage />}/>
-          <Route path="/spa-box/saltRoom" element={<SaltRoomPage />}/>
-          <Route path="/spa-box/pools" element={<PoolsPageSpaBox />}/>
-          <Route path="/spa-box/saunas" element={<SaunasPageSpaBox />}/>
-          <Route path="/spa-box/herbalSauna" element={<HerbalSaunaPage />}/>
+          <Route path="/spa-box/kneipPath" element={<SpaBoxPlacePage place="kneipPath" />}/>
+          <Route path="/spa-box/massageRoom" element={<SpaBoxPlacePage place="massageRoom" />}/>
+          <Route path="/spa-box/infraredCabin" element={<SpaBoxPlacePage place="infraredCabin" />}/>
+          <Route path="/spa-box/iceGenerator" element={<SpaBoxPlacePage place="iceGenerator" />}/>
+          <Route path="/spa-box/saunaCraxen" element={<SpaBoxPlacePage place="saunaCraxen" />}/>
+          <Route path="/spa-box/hamam" element={<SpaBoxPlacePage place="hamam" />}/>
+          <Route path="/spa-box/impressionShower" element={<SpaBoxPlacePage place="impressionShower" />}/>
+          <Route path="/spa-box/saltRoom" element={<SpaBoxPlacePage place="saltRoom" />}/>
+          <Route path="/spa-box/pools" element={<SpaBoxPlacePage place="pools" />}/>
+          <Route path="/spa-box/saunas" element={<SpaBoxPlacePage place="saunas" />}/>
+          <Route path="/spa-box/herbalSauna" element={<SpaBoxPlacePage place="herbalSauna" />}/>
           <Route path="/pools" element={<PoolsPage />}/>
           <Route path="/pools/composite" element={<CompositePools />}/>
           <Route path="/pools/concrete" element={<ConcretePools />}/>

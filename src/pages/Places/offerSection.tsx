@@ -9,7 +9,7 @@ const textReveal = {
 
 const OfferSection = ({ title, image }: { title: string, image: string }) => {
   return (
-    <div className="mt-20 flex flex-col gap-28 px-4 sm:px-8 lg:mt-28 lg:gap-48 2xl:gap-96">
+    <div className="flex flex-col px-4 sm:px-8 gap-10 lg:gap-24">
       <div className="m-auto flex max-w-[90dvw] flex-col items-center justify-around gap-10 2xl:flex-row">
         <img
           className="h-auto max-w-xl"

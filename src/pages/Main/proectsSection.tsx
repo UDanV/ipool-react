@@ -61,23 +61,20 @@ const ProectsSection = ({
   );
 
   const filteredProjects = useMemo(() => {
-    if (showPools && showSaunas) {
-      return filterProjects(activeFilter, baseProjects);
+    let items = baseProjects;
+
+    if (showPools && !showSaunas) {
+      items = items.filter((project) => project.categories.includes("pool"));
+    } else if (showSaunas && !showPools) {
+      items = items.filter((project) => project.categories.includes("sauna"));
     }
-    if (showPools) {
-      return filterProjects(
-        activeFilter,
-        baseProjects.filter((project) => project.category === "pool"),
-      );
+
+    if (showFilter) {
+      return filterProjects(activeFilter, items);
     }
-    if (showSaunas) {
-      return filterProjects(
-        activeFilter,
-        baseProjects.filter((project) => project.category === "sauna"),
-      );
-    }
-    return baseProjects;
-  }, [activeFilter, baseProjects, showPools, showSaunas]);
+
+    return items;
+  }, [activeFilter, baseProjects, showFilter, showPools, showSaunas]);
 
   const gridRows = useMemo(() => {
     if (showAll) return [];
